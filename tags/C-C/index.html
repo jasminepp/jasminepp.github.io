@@ -1,0 +1,1412 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>Tag: C/C++ - Hexo</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Hexo"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hexo"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Hexo"><meta property="og:url" content="http://example.com/"><meta property="og:site_name" content="Hexo"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:author" content="John Doe"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com"},"headline":"Hexo","image":["http://example.com/img/og_image.png"],"author":{"@type":"Person","name":"John Doe"},"publisher":{"@type":"Organization","name":"Hexo","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":""}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Hexo" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">Tags</a></li><li class="is-active"><a href="#" aria-current="page">C/C++</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-09-29T23:00:00.000Z" title="30/09/2022, 00:00:00">2022-09-30</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-10-05T22:22:49.921Z" title="05/10/2022, 23:22:49">2022-10-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Algorithm/">Algorithm</a></span><span class="level-item">5 minutes read (About 737 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/09/30/LetterCombinationsofaPhoneNumber/">Letter Combinations of a Phone Number</a></h1><div class="content"><h3 id="TEST-YOURSELF"><a href="#TEST-YOURSELF" class="headerlink" title="TEST YOURSELF"></a>TEST YOURSELF</h3><p>Given a string containing digits from <code>2-9</code> inclusive, return all possible letter combinations that the number could represent. Return the answer in <strong>any order</strong>.</p>
+<p>A mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.</p>
+<p><strong>Example 1:</strong></p>
+<p><img src="/2022/09/30/LetterCombinationsofaPhoneNumber/letter1.jpg" alt="Example 1"></p>
+<pre><code class="cpp">Input: digits = &quot;23&quot;
+Output: [&quot;ad&quot;,&quot;ae&quot;,&quot;af&quot;,&quot;bd&quot;,&quot;be&quot;,&quot;bf&quot;,&quot;cd&quot;,&quot;ce&quot;,&quot;cf&quot;]
+</code></pre>
+<h2 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h2><p>In terms of examples, if we type “23”, the most straightforward idea would be a two-level for loop traversal, which would output all the combinations.</p>
+<p>But if we enter “233”, then it’s a three-level for loop, and if “2333”, then it’s a four-level for loop …….</p>
+<p>There are three problems to solve:</p>
+<ol>
+<li>How to map numbers and letters</li>
+<li>n letters n for loops</li>
+<li>Input 1 * # keystrokes and so on exceptions</li>
+</ol>
+<h3 id="1-How-to-map-numbers-and-letters"><a href="#1-How-to-map-numbers-and-letters" class="headerlink" title="1. How to map numbers and letters"></a>1. How to map numbers and letters</h3><p>We can use a map or define a two-dimensional array, e.g. string <code>letterMap[10]</code>, to do the mapping. </p>
+<pre><code class="cpp">const string letterMap[10] = &#123;
+    &quot;&quot;, // 0
+    &quot;&quot;, // 1
+    &quot;abc&quot;, // 2
+    &quot;def&quot;, // 3
+    &quot;ghi&quot;, // 4
+    &quot;jkl&quot;, // 5
+    &quot;mno&quot;, // 6
+    &quot;pqrs&quot;, // 7
+    &quot;tuv&quot;, // 8
+    &quot;wxyz&quot;, // 9
+&#125;;
+</code></pre>
+<h3 id="2-Solve-n-for-loop-by-BackTracking"><a href="#2-Solve-n-for-loop-by-BackTracking" class="headerlink" title="2. Solve n-for loop by BackTracking"></a>2. Solve n-for loop by BackTracking</h3><p>For example, enter: “23” and abstract to a tree structure as shown in the figure.</p>
+<p><img src="/2022/09/30/LetterCombinationsofaPhoneNumber/letter2.jpg" alt="tree structure of input &quot;23&quot;"></p>
+<p>The graph shows the <strong>depth</strong> of the traversal, which is the <strong>length</strong> of the input “23”, and the leaf nodes are the <strong>results</strong> we want to collect, outputting [“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].</p>
+<ol>
+<li><strong>Backtracking function template return values and parameters</strong></li>
+</ol>
+<ul>
+<li><p>string <code>s</code> to collect the results of the leaf nodes and then save them in a string array <code>result</code></p>
+</li>
+<li><p>The <strong>index</strong> is a record of the number of digits traversed, which is used to traverse digits and the <strong>index</strong> also indicates the depth of the tree.</p>
+</li>
+</ul>
+<pre><code class="cpp">vector&lt;string&gt; result;
+string s;
+void backtracking(const string&amp; digits, int index)
+</code></pre>
+<ol start="2">
+<li><strong>Termination conditions for backtracking functions</strong></li>
+</ol>
+<p> For example, if the input case is “23”, two digits, then the root node is recursive down two levels and the leaf nodes are the result set to be collected.</p>
+<p> The termination condition is <strong>if index is equal to the number of digits (digits.size) entered</strong> (index was originally used to traverse the digits).</p>
+<p> The result is then collected, ending the recursion at this level.</p>
+<pre><code class="cpp"> if (index == digits.size()) &#123;
+   result.push_back(s);
+   return;
+&#125;
+</code></pre>
+<ol start="3">
+<li><strong>Traversal process for backtracking search</strong></li>
+</ol>
+<p> we take the number pointed to by index and find the corresponding character set (the character set of the phone keyboard)</p>
+<pre><code class="cpp">int digit = digits[index] - &#39;0&#39;;        //change the number pointed by index to int
+string letters = letterMap[digit];      // take the correponding character set
+for (int i = 0; i &lt; letters.size(); i++) &#123;
+  s.push_back(letters[i]);            // process node
+  backtracking(digits, index + 1);    // recursion，index+1
+  s.pop_back();                       // backtracking
+&#125;
+</code></pre>
+<h3 id="amp-C"><a href="#amp-C" class="headerlink" title="&amp;C++"></a>&amp;C++</h3><pre><code class="cpp">class Solution &#123;
+private:
+  const string letterMap[10] = &#123;
+      &quot;&quot;, // 0
+      &quot;&quot;, // 1
+      &quot;abc&quot;, // 2
+      &quot;def&quot;, // 3
+      &quot;ghi&quot;, // 4
+      &quot;jkl&quot;, // 5
+      &quot;mno&quot;, // 6
+      &quot;pqrs&quot;, // 7
+      &quot;tuv&quot;, // 8
+      &quot;wxyz&quot;, // 9
+  &#125;;
+public:
+  vector&lt;string&gt; result;
+  string s;
+  void backtracking(const string&amp; digits, int index) &#123;
+      if (index == digits.size()) &#123;
+          result.push_back(s);
+          return;
+      &#125;
+      int digit = digits[index] - &#39;0&#39;;        //change the number pointed by index to int
+string letters = letterMap[digit];      // take the correponding character set
+for (int i = 0; i &lt; letters.size(); i++) &#123;
+  s.push_back(letters[i]);            // process node
+  backtracking(digits, index + 1);    // recursion，index+1
+  s.pop_back();                       // backtracking
+&#125;
+vector&lt;string&gt; letterCombinations(string digits) &#123;
+      s.clear();
+      result.clear();
+      if (digits.size() == 0) &#123;
+          return result;
+      &#125;
+      backtracking(digits, 0);
+      return result;
+  &#125;
+&#125;;
+</code></pre>
+<h3 id="amp-Java"><a href="#amp-Java" class="headerlink" title="&amp;Java"></a>&amp;Java</h3><pre><code class="cpp">class Solution &#123;
+
+  // set global list to save final result
+  List&lt;String&gt; list = new ArrayList&lt;&gt;();
+
+  public List&lt;String&gt; letterCombinations(String digits) &#123;
+      if (digits == null || digits.length() == 0) &#123;
+          return list;
+      &#125;
+     
+      String[] numString = &#123;&quot;&quot;, &quot;&quot;, &quot;abc&quot;, &quot;def&quot;, &quot;ghi&quot;, &quot;jkl&quot;, &quot;mno&quot;, &quot;pqrs&quot;, &quot;tuv&quot;, &quot;wxyz&quot;&#125;;
+      //Interation
+      backTracking(digits, numString, 0);
+      return list;
+
+  &#125;
+
+  
+  StringBuilder temp = new StringBuilder();
+
+
+  public void backTracking(String digits, String[] numString, int num) &#123;
+  
+      if (num == digits.length()) &#123;
+          list.add(temp.toString());
+          return;
+      &#125;
+     String str = numString[digits.charAt(num) - &#39;0&#39;];
+      for (int i = 0; i &lt; str.length(); i++) &#123;
+          temp.append(str.charAt(i));
+          //c
+          backTracking(digits, numString, num + 1);
+     
+          temp.deleteCharAt(temp.length() - 1);
+      &#125;
+  &#125;
+&#125;
+</code></pre>
+<h3 id="amp-Python"><a href="#amp-Python" class="headerlink" title="&amp;Python"></a>&amp;Python</h3><pre><code class="cpp">class Solution:
+  def __init__(self):
+      self.answers: List[str] = []
+      self.answer: str = &#39;&#39;
+      self.letter_map = &#123;
+          &#39;2&#39;: &#39;abc&#39;,
+          &#39;3&#39;: &#39;def&#39;,
+          &#39;4&#39;: &#39;ghi&#39;,
+          &#39;5&#39;: &#39;jkl&#39;,
+          &#39;6&#39;: &#39;mno&#39;,
+          &#39;7&#39;: &#39;pqrs&#39;,
+          &#39;8&#39;: &#39;tuv&#39;,
+          &#39;9&#39;: &#39;wxyz&#39;
+      &#125;
+
+  def letterCombinations(self, digits: str) -&gt; List[str]:
+      self.answers.clear()
+      if not digits: return []
+      self.backtracking(digits, 0)
+      return self.answers
+  
+  def backtracking(self, digits: str, index: int) -&gt; None:
+      # the backtacking funtion has no return value
+      # Base Case
+      if index == len(digits):    
+          self.answers.append(self.answer)
+          return 
+   
+      letters: str = self.letter_map[digits[index]]
+      for letter in letters:
+          self.answer += letter   
+          self.backtracking(digits, index + 1)   
+          self.answer = self.answer[:-1]  # backtracking
+</code></pre>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-09-14T23:00:00.000Z" title="15/09/2022, 00:00:00">2022-09-15</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-10-05T22:22:47.783Z" title="05/10/2022, 23:22:47">2022-10-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Algorithm/">Algorithm</a></span><span class="level-item">3 minutes read (About 468 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/09/15/Combinations-Pruning/">Combinations-Pruning</a></h1><div class="content"><h2 id="Pruning-optimization"><a href="#Pruning-optimization" class="headerlink" title="Pruning optimization"></a>Pruning optimization</h2><p> There is the following code in the traversal process:</p>
+<pre><code class="cpp">for (int i = startIndex; i &lt;= n; i++) &#123;
+    path.push_back(i);
+    backtracking(n, k, i + 1);
+    path.pop_back();
+&#125;
+</code></pre>
+<p>The range of this traversal can be pruned and optimised, how?</p>
+<p>For example, if n &#x3D; 4 and k &#x3D; 4, then at the first level of the for loop, all traversals from element 2 are meaningless. At the second level of the for loop, the traversal from element 3 onwards is meaningless.</p>
+<p>This is a little abstract, as shown in the diagram:</p>
+<p><img src="/2022/09/15/Combinations-Pruning/prune1.jpg" alt="The pruning process"></p>
+<p>Each node in the diagram (<strong>rectangle</strong> in the diagram) represents a <strong>for-loop</strong> at this level, so each level of for-loops starting from the second number is meaningless and is an invalid traversal.</p>
+<p>Thus, <strong>the place to prune</strong> is at the <em><strong>starting position</strong></em> chosen by the for loop at each level of the recursion.</p>
+<p>If the number of elements after the start of the for loop is already less than the number of elements we need, then there is no need to search.</p>
+<p>Note that <code>i</code> in the code is the <strong>starting position selected in the for loop</strong>.</p>
+<p>Next, look at the optimization process as follows:</p>
+<ul>
+<li><p>Number of elements already selected: <code>path.size()</code>;</p>
+</li>
+<li><p>The number of elements still needed is: <code>k - path.size()</code>;</p>
+</li>
+<li><p>The set n must be traversed from at most the starting position : <code>n - (k - path.size()) + 1</code>, starting traversal</p>
+</li>
+</ul>
+<p>The reason for the +1 is: we want a left-closed setincluding the starting position.</p>
+<p><strong>For example</strong>, n &#x3D; 4, k &#x3D; 3, the element already selected is 0 (path.size is 0), n - (k - 0) + 1 i.e. 4 - ( 3 - 0) + 1 &#x3D; 2.<br>It is reasonable to search all from 2, which can be the combination [2, 3, 4].</p>
+<p>So the <strong>optimized for loop</strong> is:</p>
+<pre><code class="cpp">class Solution &#123;
+private:
+    vector&lt;vector&lt;int&gt;&gt; result;
+    vector&lt;int&gt; path;
+    void backtracking(int n, int k, int startIndex) &#123;
+        if (path.size() == k) &#123;
+            result.push_back(path);
+            return;
+        &#125;
+        for (int i = startIndex; i &lt;= n - (k - path.size()) + 1; i++) &#123; // optimized for loop
+            path.push_back(i); //  process node
+            backtracking(n, k, i + 1);
+            path.pop_back(); // backtracking
+        &#125;
+    &#125;
+public:
+
+    vector&lt;vector&lt;int&gt;&gt; combine(int n, int k) &#123;
+        backtracking(n, k, 1);
+        return result;
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="amp-Java"><a href="#amp-Java" class="headerlink" title="&amp;Java"></a>&amp;Java</h3><pre><code class="cpp">class Solution &#123;
+   List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
+   LinkedList&lt;Integer&gt; path = new LinkedList&lt;&gt;();
+   public List&lt;List&lt;Integer&gt;&gt; combine(int n, int k) &#123;
+       combineHelper(n, k, 1);
+       return result;
+   &#125;
+   private void combineHelper(int n, int k, int startIndex)&#123;
+       //termination
+       if (path.size() == k)&#123;
+           result.add(new ArrayList&lt;&gt;(path));
+           return;
+       &#125;
+       for (int i = startIndex; i &lt;= n - (k - path.size()) + 1; i++)&#123;
+           path.add(i);
+           combineHelper(n, k, i + 1);
+           path.removeLast();
+       &#125;
+   &#125;
+&#125;
+</code></pre>
+<h3 id="amp-Python"><a href="#amp-Python" class="headerlink" title="&amp;Python"></a>&amp;Python</h3><pre><code class="cpp">class Solution:
+   def combine(self, n: int, k: int) -&gt; List[List[int]]:
+       res=[]  
+       path=[]  
+       def backtrack(n,k,startIndex):
+           if len(path) == k:
+               res.append(path[:])
+               return
+           for i in range(startIndex,n-(k-len(path))+2): #optimized for loop
+               path.append(i)  #process node
+                   backtrack(n,k,i+1)  # recursion
+               path.pop()  #backtrack
+       backtrack(n,k,1)
+       return res
+</code></pre>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-08-30T23:00:00.000Z" title="31/08/2022, 00:00:00">2022-08-31</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-10-05T23:22:42.000Z" title="06/10/2022, 00:22:42">2022-10-06</time></span><span class="level-item"><a class="link-muted" href="/categories/Algorithm/">Algorithm</a></span><span class="level-item">4 minutes read (About 574 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/08/31/BackTracking-Combinations/">BackTracking-Combinations</a></h1><div class="content"><h3 id="TEST-YOURSELF"><a href="#TEST-YOURSELF" class="headerlink" title="TEST YOURSELF"></a>TEST YOURSELF</h3><p>Given two integers <code>n</code> and  <code>k</code>, return <em>all possible combinations</em> of <code>k</code> numbers chosen from the <em>range</em> <code>[1, n]</code>.</p>
+<p>You may return the answer in any order.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: n = <span class="number">4</span>, k = <span class="number">2</span></span><br><span class="line">Output: [[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">1</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">4</span>],[<span class="number">2</span>,<span class="number">3</span>],[<span class="number">2</span>,<span class="number">4</span>],[<span class="number">3</span>,<span class="number">4</span>]]</span><br><span class="line">Explanation: There are <span class="number">4</span> choose <span class="number">2</span> = <span class="number">6</span> total combinations.</span><br><span class="line">Note that combinations are unordered, i.e., [<span class="number">1</span>,<span class="number">2</span>] <span class="keyword">and</span> [<span class="number">2</span>,<span class="number">1</span>] are considered to be the same combination.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n = <span class="number">1</span>, k = <span class="number">1</span></span><br><span class="line">Output: [[<span class="number">1</span>]]</span><br><span class="line">Explanation: There is <span class="number">1</span> choose <span class="number">1</span> = <span class="number">1</span> total combination.</span><br></pre></td></tr></table></figure>
+
+<h2 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h2><p>We abstract the combinatorial problem into a tree structure as follows:</p>
+<p><img src="/com1.jpg" alt="tree structure of combination problem"></p>
+<p>We can see that the tree starts with the set 1, 2, 3, 4, taking the numbers from left to right, and not repeating the numbers taken.</p>
+<p>The first time we take 1, the set becomes 2, 3, 4, and since k is 2, we only need to take one more number, 2, 3, 4, respectively, to get the set [1,2] [1,3] [1,4], and so on.</p>
+<p>Each time an element is selected from the set, the selectable range shrinks as the selection proceeds, adjusting the selectable range.</p>
+<p>The diagram shows that <strong>n</strong> corresponds to the <em><strong>width</strong></em> of the tree and <strong>k</strong> to the <em><strong>depth</strong></em> of the tree.</p>
+<p><strong>How do we traverse this tree and then collect the set of results we want?</strong></p>
+<p>Each time a leaf node is searched in the diagram, we have found a result.</p>
+<p>It is equivalent to just collecting the <strong>results that reach the leaf nodes</strong> to find the set of combinations of k numbers out of n numbers.</p>
+<h2 id="The-BackTracking-Trilogy"><a href="#The-BackTracking-Trilogy" class="headerlink" title="The BackTracking Trilogy"></a>The BackTracking Trilogy</h2><ol>
+<li><strong>Backtracking function template return values and parameters</strong><br>There are <strong>two global variables</strong> to be defined here: one to hold the single eligible result and one to hold the set of eligible results</li>
+</ol>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; result; <span class="comment">// set of eligible results</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; path; <span class="comment">// single eligible result</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">backtracking</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k, <span class="type">int</span> startIndex)</span><span class="comment">// startIndex: record  the starting position of the next level of recursion and search</span></span></span><br></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li><strong>Termination conditions for backtracking functions</strong></li>
+</ol>
+<p> <strong>When do we reach the leaf nodes?</strong></p>
+<p>  If the size of the array <strong>path reaches k</strong>, we have found a combination of subsets of <strong>size k</strong>. In the diagram path stores the path from the root node to the leaf node.</p>
+<p> As in the red part of the diagram:</p>
+<p> <img src="/com2.jpg" alt="path that reaches leaf node"></p>
+<p>  At this point a two-dimensional array of <code>result</code> is used to save the path and terminate this level of recursion.</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">if</span> (path.<span class="built_in">size</span>() == k) &#123;</span><br><span class="line">    result.<span class="built_in">push_back</span>(path);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><strong>Traversal process for backtracking search</strong></li>
+</ol>
+<p> The for loop iterates from startIndex each time and then saves the fetched node i with path</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = startIndex; i &lt;= n; i++) &#123; <span class="comment">//  the horizontal traversal of tree</span></span><br><span class="line">    path.<span class="built_in">push_back</span>(i); <span class="comment">// process node</span></span><br><span class="line">    <span class="built_in">backtracking</span>(n, k, i + <span class="number">1</span>); <span class="comment">// recursion：the horizontal traversal of tree</span></span><br><span class="line">,notice the search of next level starts at i+<span class="number">1</span></span><br><span class="line">    path.<span class="built_in">pop_back</span>(); <span class="comment">// backtracking, withdraw processed node</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="amp-C"><a href="#amp-C" class="headerlink" title="&amp;C++"></a>&amp;C++</h3><p>The full code:</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; result; </span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; path; </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">backtracking</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k, <span class="type">int</span> startIndex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (path.<span class="built_in">size</span>() == k) &#123;</span><br><span class="line">            result.<span class="built_in">push_back</span>(path);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = startIndex; i &lt;= n; i++) &#123;</span><br><span class="line">            path.<span class="built_in">push_back</span>(i); <span class="comment">// </span></span><br><span class="line">            <span class="built_in">backtracking</span>(n, k, i + <span class="number">1</span>); </span><br><span class="line">            path.<span class="built_in">pop_back</span>(); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">combine</span>(<span class="type">int</span> n, <span class="type">int</span> k) &#123;</span><br><span class="line">        result.<span class="built_in">clear</span>(); </span><br><span class="line">        path.<span class="built_in">clear</span>();   </span><br><span class="line">        <span class="built_in">backtracking</span>(n, k, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="amp-Python"><a href="#amp-Python" class="headerlink" title="&amp;Python"></a>&amp;Python</h3> <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="function">def <span class="title">combine</span><span class="params">(self, n: <span class="type">int</span>, k: <span class="type">int</span>)</span> -&gt; List[List[<span class="type">int</span>]]:</span></span><br><span class="line"><span class="function">        res =</span> []</span><br><span class="line">        path = []</span><br><span class="line">        def <span class="built_in">backtrack</span>(n, k, StartIndex):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(path) == k:</span><br><span class="line">                res.<span class="built_in">append</span>(path[:])</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> i in <span class="built_in">range</span>(StartIndex, n + <span class="number">1</span>):</span><br><span class="line">                path.<span class="built_in">append</span>(i)</span><br><span class="line">                <span class="built_in">backtrack</span>(n, k, i+<span class="number">1</span>)</span><br><span class="line">                path.<span class="built_in">pop</span>()</span><br><span class="line">        <span class="built_in">backtrack</span>(n, k, <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-07-30T23:00:00.000Z" title="31/07/2022, 00:00:00">2022-07-31</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-10-05T22:22:48.440Z" title="05/10/2022, 23:22:48">2022-10-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Algorithm/">Algorithm</a></span><span class="level-item">6 minutes read (About 828 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/07/31/ConvertSortedArraytoBinarySearchTree/">Convert Sorted Array to Binary Search Tree</a></h1><div class="content"><h3 id="TEST-YOURSELF"><a href="#TEST-YOURSELF" class="headerlink" title="TEST YOURSELF"></a>TEST YOURSELF</h3><p>Given an integer array <em><strong>nums</strong></em> where the elements are sorted in <strong>ascending order</strong>, convert <em>it to a height-balanced binary search tree</em>.</p>
+<p>A <strong>height-balanced</strong> binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.</p>
+<p><strong>Example 1:</strong></p>
+<p><img src="/2022/07/31/ConvertSortedArraytoBinarySearchTree/convert1.jpg" alt="Example 1"></p>
+<pre><code class="cpp、">Input: nums = [-10,-3,0,5,9]
+Output: [0,-3,9,-10,null,5]
+</code></pre>
+<p>Explanation: [0,-10,5,null,-3,null,9] is also accepted:</p>
+<p><img src="/2022/07/31/ConvertSortedArraytoBinarySearchTree/convert2.jpg" alt="Accepted Graph"></p>
+<h2 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h2><p>The focus is on finding the <strong>split point</strong>, which is used as the current node, and then recursively the left interval and right interval. The <strong>split point</strong> is the node in the <em>middle</em> of the array.</p>
+<p><strong>If the array is of even length and there are two intermediate nodes, which one is taken?</strong></p>
+<p>Either one can be taken, except that it forms a different balanced binary search tree.</p>
+<p><strong>Example</strong>: Input: [-10,-3,0,5,9]</p>
+<p>The following two trees, both of which are balanced binary search trees for this array, are as follows.</p>
+<p><img src="/2022/07/31/ConvertSortedArraytoBinarySearchTree/convert3.jpg" alt="2 Balanced Binary Searched Trees of an even size of  array "></p>
+<p>If the length of the array to be partitioned is even and the middle element is two, the left element is tree 1 and the right element is tree 2</p>
+<h3 id="Recursion"><a href="#Recursion" class="headerlink" title="Recursion"></a>Recursion</h3><ol>
+<li><strong>Determine the parameters and return value of the recursive function:</strong><br>We want to construct a binary tree, still using the return value of the recursive function to construct the <em>left and right children of the middle node</em>.</li>
+</ol>
+<p> <strong>Parameters:</strong> first the array is passed in, then the <strong>left</strong> subscript left and the <strong>right</strong> subscript right</p>
+<pre><code class="cpp">  // [left, right]
+TreeNode* traversal(vector&lt;int&gt;&amp; nums, int left, int right)
+</code></pre>
+<ol start="2">
+<li><strong>Determine the termination condition:</strong><br> When the interval <strong>left &gt; right</strong>, the node is empty.</li>
+</ol>
+<pre><code class="cpp">if (left &gt; right) return nullptr;
+</code></pre>
+<ol start="3">
+<li><strong>The logic for determining the single-level recursion:</strong></li>
+</ol>
+<ul>
+<li><p>First take the position of the middle element of the array: <code> int mid = left + ((right - left) / 2);</code></p>
+</li>
+<li><p>Once the middle position is taken, start constructing nodes with the elements in the middle position: <code> TreeNode* root = new TreeNode(nums[mid]);</code></p>
+</li>
+<li><p>Then divide the interval, root’s <strong>left child</strong> picks up the next layer of left interval construction node, the <strong>right chil</strong>d picks up the next layer of right interval construction node.</p>
+</li>
+<li><p>Finally, the root node is returned:</p>
+<p>&#96;&#96;&#96; cpp</p>
+</li>
+</ul>
+<p> int mid &#x3D; left + ((right - left) &#x2F; 2);<br>TreeNode* root &#x3D; new TreeNode(nums[mid]);<br>root-&gt;left &#x3D; traversal(nums, left, mid - 1);<br>root-&gt;right &#x3D; traversal(nums, mid + 1, right);<br>return root; </p>
+<pre><code>
+**&amp;C++**
+
+``` cpp
+class Solution &#123;
+private:
+ TreeNode* traversal(vector&lt;int&gt;&amp; nums, int left, int right) &#123;
+     if (left &gt; right) return nullptr;
+     int mid = left + ((right - left) / 2);
+     TreeNode* root = new TreeNode(nums[mid]);
+     root-&gt;left = traversal(nums, left, mid - 1);
+     root-&gt;right = traversal(nums, mid + 1, right);
+     return root;
+ &#125;
+public:
+ TreeNode* sortedArrayToBST(vector&lt;int&gt;&amp; nums) &#123;
+     TreeNode* root = traversal(nums, 0, nums.size() - 1);
+     return root;
+ &#125;
+&#125;;
+</code></pre>
+<h3 id="Iteration"><a href="#Iteration" class="headerlink" title="Iteration"></a>Iteration</h3><p><strong>&amp;C++</strong></p>
+<pre><code class="cpp">class Solution &#123;
+public:
+    TreeNode* sortedArrayToBST(vector&lt;int&gt;&amp; nums) &#123;
+        if (nums.size() == 0) return nullptr;
+
+        TreeNode* root = new TreeNode(0);   // initial root node
+        queue&lt;TreeNode*&gt; nodeQue;           // save traversal nodes
+        queue&lt;int&gt; leftQue;                 // save left subscript
+        queue&lt;int&gt; rightQue;                // save right subscript
+            nodeQue.push(root);                 //  put root node in queue
+        leftQue.push(0);                    // 0 is the initial position of left subscript
+        rightQue.push(nums.size() - 1);     // nums.size() - 1 is the initial position of right subscript
+
+        while (!nodeQue.empty()) &#123;
+            TreeNode* curNode = nodeQue.front();
+            nodeQue.pop();
+            int left = leftQue.front(); leftQue.pop();
+            int right = rightQue.front(); rightQue.pop();
+            int mid = left + ((right - left) / 2);
+
+        curNode-&gt;val = nums[mid];       // let middle node = mid value
+
+            if (left &lt;= mid - 1) &#123;          //  deal with left side
+                curNode-&gt;left = new TreeNode(0);
+                nodeQue.push(curNode-&gt;left);
+                leftQue.push(left);
+                rightQue.push(mid - 1);
+            &#125;
+
+            if (right &gt;= mid + 1) &#123;         // deal with right side
+                curNode-&gt;right = new TreeNode(0);
+                nodeQue.push(curNode-&gt;right);
+                leftQue.push(mid + 1);
+                rightQue.push(right);
+            &#125;
+        &#125;
+        return root;
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="amp-Java"><a href="#amp-Java" class="headerlink" title="&amp;Java"></a>&amp;Java</h3><p><strong>Recursion</strong></p>
+<pre><code class="cpp">class Solution &#123;
+    public TreeNode sortedArrayToBST(int[] nums) &#123;
+        TreeNode root = traversal(nums, 0, nums.length - 1);
+        return root;
+    &#125;
+
+    // [left, right]
+    private TreeNode traversal(int[] nums, int left, int right) &#123;
+        if (left &gt; right) return null;
+
+        int mid = left + ((right - left) &gt;&gt; 1);
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = traversal(nums, left, mid - 1);
+        root.right = traversal(nums, mid + 1, right);
+        return root;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>Iteration</strong></p>
+<pre><code class="cpp">class Solution &#123;
+    public TreeNode sortedArrayToBST(int[] nums) &#123;
+        if (nums.length == 0) return null;
+
+        //initial root node
+        TreeNode root = new TreeNode(-1);
+        Queue&lt;TreeNode&gt; nodeQueue = new LinkedList&lt;&gt;();
+        Queue&lt;Integer&gt; leftQueue = new LinkedList&lt;&gt;();
+        Queue&lt;Integer&gt; rightQueue = new LinkedList&lt;&gt;();
+
+        // put root node in queue
+        nodeQueue.offer(root);
+
+        leftQueue.offer(0);
+
+        rightQueue.offer(nums.length - 1);
+
+        while (!nodeQueue.isEmpty()) &#123;
+            TreeNode currNode = nodeQueue.poll();
+            int left = leftQueue.poll();
+            int right = rightQueue.poll();
+            int mid = left + ((right - left) &gt;&gt; 1);
+
+            currNode.val = nums[mid];
+
+
+            if (left &lt;= mid - 1) &#123;
+                currNode.left = new TreeNode(-1);
+                nodeQueue.offer(currNode.left);
+                leftQueue.offer(left);
+                rightQueue.offer(mid - 1);
+            &#125;
+
+
+            if (right &gt;= mid + 1) &#123;
+                currNode.right = new TreeNode(-1);
+                nodeQueue.offer(currNode.right);
+                leftQueue.offer(mid + 1);
+                rightQueue.offer(right);
+            &#125;
+        &#125;
+        return root;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="amp-Python"><a href="#amp-Python" class="headerlink" title="&amp;Python"></a>&amp;Python</h3><p><strong>Recursion</strong></p>
+<pre><code class="cpp">class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -&gt; TreeNode:
+     
+        root = self.traversal(nums, 0, len(nums)-1)
+        return root
+
+    def traversal(self, nums: List[int], left: int, right: int) -&gt; TreeNode:
+        # Base Case
+        if left &gt; right:
+            return None
+
+        mid = left + (right - left) // 2
+
+        mid_root = TreeNode(nums[mid])
+
+        mid_root.left = self.traversal(nums, left, mid-1)
+        mid_root.right = self.traversal(nums, mid+1, right)
+
+
+        return mid_root
+</code></pre>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-07-14T23:00:00.000Z" title="15/07/2022, 00:00:00">2022-07-15</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-10-05T22:22:49.411Z" title="05/10/2022, 23:22:49">2022-10-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Algorithm/">Algorithm</a></span><span class="level-item">5 minutes read (About 709 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/07/15/InsertintoaBinarySearchTree/">Insert into a Binary Search Tree</a></h1><div class="content"><h3 id="TEST-YOURSELF"><a href="#TEST-YOURSELF" class="headerlink" title="TEST YOURSELF"></a>TEST YOURSELF</h3><p>You are given the <em><strong>root</strong></em> node of a binary search tree (BST) and a value to insert into the tree. Return the <em>root node of the BST after the insertion</em>. It is <strong>guaranteed</strong> that the new value does not exist in the original BST.</p>
+<p>Notice that there may exist multiple valid ways for the insertion, as long as the tree remains a BST after insertion. You can return any of them.</p>
+<p><strong>Example 1:</strong></p>
+<p><img src="/2022/07/15/InsertintoaBinarySearchTree/insert1.jpg" alt="Example 1"></p>
+<pre><code class="cpp、">Input: root = [4,2,7,1,3], val = 5
+Output: [4,2,7,1,3,5]
+</code></pre>
+<p>Explanation: Another accepted tree is:</p>
+<p><img src="/2022/07/15/InsertintoaBinarySearchTree/insert2.jpg" alt="Accepted tree"></p>
+<h2 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h2><p>We just need to follow the rules of the binary search tree to traverse and insert nodes when we encounter empty nodes.</p>
+<p>For example, insert element 10, we need to find the last node to insert it, the same reasoning to insert element 15, insert element 0, insert element 6. </p>
+<p><img src="/2022/07/15/InsertintoaBinarySearchTree/insert3.jpg" alt="Insert 10"></p>
+<p><img src="/2022/07/15/InsertintoaBinarySearchTree/insert4.jpg" alt="Insert 15"></p>
+<p><img src="/2022/07/15/InsertintoaBinarySearchTree/insert5.jpg" alt="Insert 0"></p>
+<p><img src="/2022/07/15/InsertintoaBinarySearchTree/insert6.jpg" alt="Insert 6"></p>
+<p>The next step is the process of traversing the binary search tree:</p>
+<h3 id="Recursion"><a href="#Recursion" class="headerlink" title="Recursion"></a>Recursion</h3><ol>
+<li><strong>Determine the parameters and return value of the recursive function:</strong></li>
+</ol>
+<p> The parameters are the root node pointer, and the element to be inserted.<br>We can use the return value to complete the assignment of the newly added node to its parent node<br>The return type of the recursive function is the node type <strong>TreeNode</strong>*</p>
+<pre><code class="cpp">  TreeNode* insertIntoBST(TreeNode* root, int val)
+</code></pre>
+<ol start="2">
+<li><strong>Determine the termination condition:</strong><br>The termination condition is to find the position of the node to be inserted when the traversed node is <strong>null</strong>, and to return the inserted node</li>
+</ol>
+<pre><code class="cpp">if (root == NULL) &#123;
+   TreeNode* node = new TreeNode(val);
+   return node;
+&#125;
+</code></pre>
+<ol start="3">
+<li><strong>The logic for determining the single-level recursion:</strong></li>
+</ol>
+<p> We do not need to traverse the whole search tree.<br>Because the search tree is directed, the direction of recursion can be determined by the value of the inserted elements.</p>
+<pre><code class="cpp">if (root == NULL) &#123;
+ TreeNode* node = new TreeNode(val);
+ return node;
+&#125;
+</code></pre>
+<p><strong>&amp;C++</strong></p>
+<pre><code class="cpp">class Solution &#123;
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int val) &#123;
+        if (root == NULL) &#123;
+            TreeNode* node = new TreeNode(val);
+            return node;
+        &#125;
+        if (root-&gt;val &gt; val) root-&gt;left = insertIntoBST(root-&gt;left, val);
+        if (root-&gt;val &lt; val) root-&gt;right = insertIntoBST(root-&gt;right, val);
+        return root;
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="Iteration"><a href="#Iteration" class="headerlink" title="Iteration"></a>Iteration</h3><p><strong>&amp;C++</strong></p>
+<pre><code class="cpp">class Solution &#123;
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int val) &#123;
+        if (root == NULL) &#123;
+            TreeNode* node = new TreeNode(val);
+            return node;
+        &#125;
+        TreeNode* cur = root;
+        TreeNode* parent = root; //  we need to record last node, otherise we cannot give value to new node
+        while (cur != NULL) &#123;
+            parent = cur;
+            if (cur-&gt;val &gt; val) cur = cur-&gt;left;
+            else cur = cur-&gt;right;
+        &#125;
+        TreeNode* node = new TreeNode(val);
+        if (val &lt; parent-&gt;val) parent-&gt;left = node;//  Use parent node to give value
+        else parent-&gt;right = node;
+        return root;
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="amp-Java"><a href="#amp-Java" class="headerlink" title="&amp;Java"></a>&amp;Java</h3><p><strong>Recursion</strong></p>
+<pre><code class="cpp">class Solution &#123;
+    public TreeNode insertIntoBST(TreeNode root, int val) &#123;
+        if (root == null) return new TreeNode(val);
+        TreeNode newRoot = root;
+        TreeNode pre = root;
+        while (root != null) &#123;
+            pre = root;
+            if (root.val &gt; val) &#123;
+                root = root.left;
+            &#125; else if (root.val &lt; val) &#123;
+                root = root.right;
+            &#125; 
+        &#125;
+        if (pre.val &gt; val) &#123;
+            pre.left = new TreeNode(val);
+        &#125; else &#123;
+            pre.right = new TreeNode(val);
+        &#125;
+
+        return newRoot;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>Iteration</strong></p>
+<pre><code class="cpp">class Solution &#123;
+    public TreeNode insertIntoBST(TreeNode root, int val) &#123;
+        if (root == null) // if this node is empty, which means val finds the suitable position, return new node
+            return new TreeNode(val);
+            
+        if (root.val &lt; val)&#123;
+            root.right = insertIntoBST(root.right, val); // create right subtree
+        &#125;else if (root.val &gt; val)&#123;
+            root.left = insertIntoBST(root.left, val); // create left subtree
+
+        &#125;
+        return root;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="amp-Python"><a href="#amp-Python" class="headerlink" title="&amp;Python"></a>&amp;Python</h3><p><strong>Recursion</strong></p>
+<pre><code class="cpp"># Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def insertIntoBST(self, root: TreeNode, val: int) -&gt; TreeNode:
+        
+
+        # Base Case
+        if not root: return TreeNode(val)
+
+        if val &lt; root.val: 
+    
+            root.left = self.insertIntoBST(root.left, val)
+
+        if root.val &lt; val:
+   
+            root.right = self.insertIntoBST(root.right, val)
+
+        return root
+</code></pre>
+<p><strong>Iteration</strong></p>
+<pre><code class="cpp">class Solution:
+    def insertIntoBST(self, root: TreeNode, val: int) -&gt; TreeNode:
+        if not root: 
+            return TreeNode(val)
+        parent = None
+        cur = root
+
+        #use while loop to find the parent of new node 
+        while cur: 
+            if cur.val &lt; val: 
+                parent = cur
+                cur = cur.right
+            elif cur.val &gt; val: 
+                parent = cur
+                cur = cur.left
+
+
+        # the parent of new node has been found
+        if parent.val &gt; val: 
+            parent.left = TreeNode(val)
+        else: 
+            parent.right = TreeNode(val)
+        
+        return root
+</code></pre>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-06-29T23:00:00.000Z" title="30/06/2022, 00:00:00">2022-06-30</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-10-05T22:22:53.460Z" title="05/10/2022, 23:22:53">2022-10-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Algorithm/">Algorithm</a></span><span class="level-item">6 minutes read (About 919 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/06/30/MergeTwoBinaryTrees/">Merge Two Binary Trees</a></h1><div class="content"><h3 id="TEST-YOURSELF"><a href="#TEST-YOURSELF" class="headerlink" title="TEST YOURSELF"></a>TEST YOURSELF</h3><p>You are given two binary trees <strong>root1</strong> and <strong>root2</strong>.</p>
+<p>Imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not. You need to merge the two trees into a new binary tree. The merge rule is that if two nodes overlap, then sum node values up as the new value of the merged node. Otherwise, the NOT null node will be used as the node of the new tree.</p>
+<p>Return the <strong>merged tree</strong>.</p>
+<p>Note: The merging process must start from the root nodes of both trees.</p>
+<p>Example 1:</p>
+<p><img src="/2022/06/30/MergeTwoBinaryTrees/merge1.jpg" alt="Example 1"></p>
+<pre><code class="cpp、">Input: root1 = [1,3,2,5], root2 = [2,1,3,null,4,null,7]
+Output: [3,4,5,5,4,null,7]
+</code></pre>
+<h2 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h2><p>It’s actually the <strong>same</strong> logic as traversing a tree, except that the nodes of both trees are passed in and operated on <strong>simultaneously</strong>.</p>
+<h3 id="Resursion"><a href="#Resursion" class="headerlink" title="Resursion"></a>Resursion</h3><p>Use pre-order as an example:</p>
+<p><img src="/2022/06/30/MergeTwoBinaryTrees/merge2.jpg" alt="Merge trees by Pre-order Traversal1"></p>
+<p><img src="/2022/06/30/MergeTwoBinaryTrees/merge3.jpg" alt="Merge trees by Pre-order Traversal2"></p>
+<p><img src="/2022/06/30/MergeTwoBinaryTrees/merge4.jpg" alt="Merge trees by Pre-order Traversal3"></p>
+<ol>
+<li><strong>Determine the parameters and return value of the recursive function:</strong> To merge two binary trees, then the argument is <em><strong>passed at least the root node of both binary trees</strong></em>, and the return value is the root node of the merged binary tree.</li>
+</ol>
+<pre><code class="cpp">TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) &#123;
+</code></pre>
+<ol start="2">
+<li><strong>Determine the termination condition:</strong> Since two trees are passed in, there will be two trees traversing nodes t1 and t2.</li>
+</ol>
+<p>  If t1 &#x3D;&#x3D; NULL, the two trees will be merged into t2 (it doesn’t matter if t2 is also NULL, it will be NULL after the merge).</p>
+<p> If t2 &#x3D;&#x3D; NULL, then the two numbers are merged into t1 (it doesn’t matter if t1 is also NULL, the merge is NULL).</p>
+<pre><code class="cpp">if (t1 == NULL) return t2; 
+if (t2 == NULL) return t1; 
+</code></pre>
+<ol start="3">
+<li><strong>The logic for determining the single-level recursion</strong>:<br> Adding the elements of two trees together</li>
+</ol>
+<pre><code class="cpp">t1-&gt;val += t2-&gt;val;
+</code></pre>
+<p>The l<strong>eft subtree of t1</strong> is: the left subtree after merging the left subtree of t1 and the left subtree of t2.</p>
+<p>The <strong>right subtree of t1</strong> is: the right subtree after merging the right subtree of t1 and the right subtree of t2.</p>
+<p>The <strong>final t1</strong> is the <em><strong>root</strong></em> node after the merge.</p>
+<pre><code class="cpp">t1-&gt;left = mergeTrees(t1-&gt;left, t2-&gt;left);
+t1-&gt;right = mergeTrees(t1-&gt;right, t2-&gt;right);
+return t1;
+</code></pre>
+<p><strong>&amp;C++</strong></p>
+<p> Complete code</p>
+<pre><code class="cpp"> class Solution &#123;
+public:
+  TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) &#123;
+      if (t1 == NULL) return t2;
+      if (t2 == NULL) return t1;
+      // re-define new node, don&#39;t modity structure of the 2 old tree
+      TreeNode* root = new TreeNode(0);
+      root-&gt;val = t1-&gt;val + t2-&gt;val;
+      root-&gt;left = mergeTrees(t1-&gt;left, t2-&gt;left);
+      root-&gt;right = mergeTrees(t1-&gt;right, t2-&gt;right);
+      return root;
+  &#125;
+&#125;;
+</code></pre>
+<h3 id="Iteration"><a href="#Iteration" class="headerlink" title="Iteration"></a>Iteration</h3><p><strong>&amp;C++</strong></p>
+<pre><code class="cpp">class Solution &#123;
+public:
+   TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) &#123;
+       if (t1 == NULL) return t2;
+       if (t2 == NULL) return t1;
+       queue&lt;TreeNode*&gt; que;
+       que.push(t1);
+       que.push(t2);
+       while(!que.empty()) &#123;
+           TreeNode* node1 = que.front(); que.pop();
+           TreeNode* node2 = que.front(); que.pop();
+           // add val
+           node1-&gt;val += node2-&gt;val;
+
+           // if thel left node of 2 trees are both not empty, enter queue
+           if (node1-&gt;left != NULL &amp;&amp; node2-&gt;left != NULL) &#123;
+               que.push(node1-&gt;left);
+               que.push(node2-&gt;left);
+           &#125;
+           // if thel right node of 2 trees are both noe empty, enter queue
+           if (node1-&gt;right != NULL &amp;&amp; node2-&gt;right != NULL) &#123;
+               que.push(node1-&gt;right);
+               que.push(node2-&gt;right);
+           &#125;
+
+               //  when left node of t1=null, t2 !=null, set val
+           if (node1-&gt;left == NULL &amp;&amp; node2-&gt;left != NULL) &#123;
+               node1-&gt;left = node2-&gt;left;
+           &#125;
+           // when right node of t1=null, t2 !=null, set val
+           if (node1-&gt;right == NULL &amp;&amp; node2-&gt;right != NULL) &#123;
+               node1-&gt;right = node2-&gt;right;
+           &#125;
+       &#125;
+       return t1;
+   &#125;
+&#125;;
+</code></pre>
+<p><strong>&amp;Java</strong></p>
+<p><strong>Recursion</strong></p>
+<pre><code class="cpp">class Solution &#123;
+  public TreeNode mergeTrees(TreeNode root1, TreeNode root2) &#123;
+      if (root1 == null) return root2;
+      if (root2 == null) return root1;
+
+      root1.val += root2.val;
+      root1.left = mergeTrees(root1.left,root2.left);
+      root1.right = mergeTrees(root1.right,root2.right);
+      return root1;
+  &#125;
+&#125;
+</code></pre>
+<p><strong>Iteration</strong></p>
+<pre><code class="cpp"> class Solution &#123;
+    // using queue
+    public TreeNode mergeTrees(TreeNode root1, TreeNode root2) &#123;
+        if (root1 == null) return root2;
+        if (root2 ==null) return root1;
+        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();
+        queue.offer(root1);
+        queue.offer(root2);
+        while (!queue.isEmpty()) &#123;
+            TreeNode node1 = queue.poll();
+            TreeNode node2 = queue.poll();
+           
+            node1.val = node1.val + node2.val;
+
+            if (node1.left != null &amp;&amp; node2.left != null) &#123;
+                queue.offer(node1.left);
+                queue.offer(node2.left);
+            &#125;
+    
+            if (node1.right != null &amp;&amp; node2.right != null) &#123;
+                queue.offer(node1.right);
+                queue.offer(node2.right);
+            &#125;
+
+            if (node1.left == null &amp;&amp; node2.left != null) &#123;
+                node1.left = node2.left;
+            &#125;
+
+            if (node1.right == null &amp;&amp; node2.right != null) &#123;
+                node1.right = node2.right;
+            &#125;
+        &#125;
+        return root1;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>&amp;Python</strong></p>
+<p><strong>Recursion</strong></p>
+<pre><code class="cpp"># Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def mergeTrees(self, root1: TreeNode, root2: TreeNode) -&gt; TreeNode:
+       
+        if not root1: 
+            return root2
+        if not root2: 
+            return root1
+        
+        root1.val += root2.val # 中
+        root1.left = self.mergeTrees(root1.left, root2.left) #left
+        root1.right = self.mergeTrees(root1.right, root2.right) # right
+        
+        return root1
+</code></pre>
+<p><strong>Iteration</strong></p>
+<pre><code class="cpp">class Solution:
+    def mergeTrees(self, root1: TreeNode, root2: TreeNode) -&gt; TreeNode:
+        if not root1: 
+            return root2
+        if not root2: 
+            return root1
+
+        queue = deque()
+        queue.append(root1)
+        queue.append(root2)
+
+        while queue: 
+            node1 = queue.popleft()
+            node2 = queue.popleft()
+            # update queue
+
+            if node1.left and node2.left: 
+                queue.append(node1.left)
+                queue.append(node2.left)
+
+            if node1.right and node2.right: 
+                queue.append(node1.right)
+                queue.append(node2.right)
+
+
+            node1.val += node2.val
+            if not node1.left and node2.left: 
+                node1.left = node2.left
+            if not node1.right and node2.right: 
+                node1.right = node2.right
+
+        return root1
+</code></pre>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-06-13T23:00:00.000Z" title="14/06/2022, 00:00:00">2022-06-14</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-10-05T22:22:54.653Z" title="05/10/2022, 23:22:54">2022-10-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Algorithm/">Algorithm</a></span><span class="level-item">5 minutes read (About 712 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/06/14/MinimumDepthofBinaryTree/">Minimum Depth of Binary Tree</a></h1><div class="content"><h3 id="TEST-YOURSELF"><a href="#TEST-YOURSELF" class="headerlink" title="TEST YOURSELF"></a>TEST YOURSELF</h3><p>Given a binary tree, find its minimum depth.</p>
+<p>The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.</p>
+<p>Note: A leaf is a node with no children.</p>
+<p><strong>Example 1:</strong></p>
+<p><img src="/2022/06/14/MinimumDepthofBinaryTree/min1.jpg" alt="Example1"></p>
+<pre><code class="cpp">Input: root = [3,9,20,null,null,15,7]
+Output: 2
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code class="cpp">Input: root = [2,null,3,null,4,null,5,null,6]
+Output: 5
+</code></pre>
+<h2 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h2><p>Intuitively, it seems to be similar to finding the maximum depth, but in fact it is still quite <strong>different</strong>.</p>
+<p>In the following explanation, we still use <strong>post-order</strong><br>traversal in the order of traversal (because we want to compare the results after the recursive returns)</p>
+<p>We first need to understand the definition of <strong>minimum depth</strong>: the minimum depth is the number of nodes on the shortest path from the root node to the <strong>nearest leaf node</strong></p>
+<p><img src="/2022/06/14/MinimumDepthofBinaryTree/min2.jpg" alt="minDepth is 3"></p>
+<h3 id="Recursion"><a href="#Recursion" class="headerlink" title="Recursion"></a>Recursion</h3><ol>
+<li><strong>Determine the parameters and return value of the recursive function:</strong> The parameter is the root node of the binary tree to be passed in, and the depth returned is of type <em><strong>int</strong></em>.</li>
+</ol>
+<pre><code class="cpp">int getDepth(TreeNode* node)
+</code></pre>
+<ol start="2">
+<li><strong>Determine the termination condition:</strong> if the node is empty, 0 is returned, indicating a height of 0.</li>
+</ol>
+<pre><code class="cpp">if (node == NULL) return 0;
+</code></pre>
+<ol start="3">
+<li><strong>The logic for determining the single-level recursion</strong>:</li>
+</ol>
+<ul>
+<li><p>If the left subtree is empty and the right subtree is not empty, then the minimum depth is: <strong>1 + the depth of the right subtree</strong>.</p>
+</li>
+<li><p>Conversely, if the right subtree is empty and the left subtree is not empty, the minimum depth is: <strong>1 + the depth of the left subtree</strong>. </p>
+</li>
+<li><p>Finally, if neither the left nor the right subtree is empty, return <strong>the minimum depth of the left or right subtree+1</strong>.</p>
+</li>
+</ul>
+<pre><code class="cpp">// it is not the most deep node when the left subtree is empty and the right subtree is not empty
+if (node-&gt;left == NULL &amp;&amp; node-&gt;right != NULL) &#123; 
+   return 1 + rightDepth;
+&#125;   
+// it is not the most deep node when the left subtree is not empty and the right subtree is empty
+if (node-&gt;left != NULL &amp;&amp; node-&gt;right == NULL) &#123; 
+   return 1 + leftDepth;
+&#125;
+int result = 1 + min(leftDepth, rightDepth);
+return result;
+</code></pre>
+<p><strong>&amp;C++</strong></p>
+<pre><code class="cpp">class Solution &#123;
+public:
+    int minDepth(TreeNode* root) &#123;
+        if (root == NULL) return 0;
+        if (root-&gt;left == NULL &amp;&amp; root-&gt;right != NULL) &#123;
+            return 1 + minDepth(root-&gt;right);
+        &#125;
+        if (root-&gt;left != NULL &amp;&amp; root-&gt;right == NULL) &#123;
+            return 1 + minDepth(root-&gt;left);
+        &#125;
+        return 1 + min(minDepth(root-&gt;left), minDepth(root-&gt;right));
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="Iteration"><a href="#Iteration" class="headerlink" title="Iteration"></a>Iteration</h3><p>   <strong>&amp;C++</strong></p>
+<pre><code class="cpp">class Solution &#123;
+public:
+
+    int minDepth(TreeNode* root) &#123;
+        if (root == NULL) return 0;
+        int depth = 0;
+        queue&lt;TreeNode*&gt; que;
+        que.push(root);
+        while(!que.empty()) &#123;
+            int size = que.size();
+            depth++; // reord
+            for (int i = 0; i &lt; size; i++) &#123;
+                TreeNode* node = que.front();
+                que.pop();
+                if (node-&gt;left) que.push(node-&gt;left);
+                if (node-&gt;right) que.push(node-&gt;right);
+                if (!node-&gt;left &amp;&amp; !node-&gt;right) &#123;                     return depth;
+                &#125;
+            &#125;
+        &#125;
+        return depth;
+    &#125;
+&#125;;
+</code></pre>
+<p>   <strong>&amp;Java</strong></p>
+<ul>
+<li><strong>Resursion</strong></li>
+</ul>
+<pre><code class="cpp">class Solution &#123;
+   
+    public int minDepth(TreeNode root) &#123;
+        if (root == null) &#123;
+            return 0;
+        &#125;
+        int leftDepth = minDepth(root.left);
+        int rightDepth = minDepth(root.right);
+        if (root.left == null) &#123;
+            return rightDepth + 1;
+        &#125;
+        if (root.right == null) &#123;
+            return leftDepth + 1;
+        &#125;
+        // both left node and right node are not empty 
+        return Math.min(leftDepth, rightDepth) + 1;
+    &#125;
+&#125;
+
+</code></pre>
+<ul>
+<li><strong>Iteration</strong></li>
+</ul>
+<pre><code class="cpp">class Solution &#123;
+
+    public int minDepth(TreeNode root) &#123;
+        if (root == null) &#123;
+            return 0;
+        &#125;
+        Deque&lt;TreeNode&gt; deque = new LinkedList&lt;&gt;();
+        deque.offer(root);
+        int depth = 0;
+        while (!deque.isEmpty()) &#123;
+            int size = deque.size();
+            depth++;
+            for (int i = 0; i &lt; size; i++) &#123;
+                TreeNode poll = deque.poll();
+                if (poll.left == null &amp;&amp; poll.right == null) &#123;
+#                     // when iterate leaf node ,return directly. since it is level oreder traversal, this value is minimum
+                    return depth;
+                &#125;
+                if (poll.left != null) &#123;
+                    deque.offer(poll.left);
+                &#125;
+                if (poll.right != null) &#123;
+                    deque.offer(poll.right);
+                &#125;
+            &#125;
+        &#125;
+        return depth;
+    &#125;
+&#125;
+</code></pre>
+<p>   <strong>&amp;Python</strong></p>
+<ul>
+<li><strong>Resursion</strong></li>
+</ul>
+<pre><code class="cpp">class Solution:
+    def minDepth(self, root: TreeNode) -&gt; int:
+        if not root:
+            return 0
+        if not root.left and not root.right:
+            return 1
+
+        min_depth = 10**9
+        if root.left:
+#             min_depth = min(self.minDepth(root.left), min_depth) # the minimum depth of left subtree
+        if root.right:
+            min_depth = min(self.minDepth(root.right), min_depth) # the minimum depth of right subtree
+        return min_depth + 1
+</code></pre>
+<ul>
+<li><strong>Iteration</strong></li>
+</ul>
+<pre><code class="cpp">class Solution:
+    def minDepth(self, root: TreeNode) -&gt; int:
+        if not root:
+            return 0
+        if not root.left and not root.right:
+            return 1
+
+        min_depth = 10**9
+        if root.left:
+            min_depth = min(self.minDepth(root.left), min_depth) # the minimum depth of left subtree
+        if root.right:
+            min_depth = min(self.minDepth(root.right), min_depth) # the minimum depth of right subtree
+        return min_depth + 1
+</code></pre>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-05-30T23:00:00.000Z" title="31/05/2022, 00:00:00">2022-05-31</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-10-05T22:22:52.987Z" title="05/10/2022, 23:22:52">2022-10-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Algorithm/">Algorithm</a></span><span class="level-item">4 minutes read (About 666 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/05/31/MaximumDepthofBinaryTree/">Maximum Depth of Binary Tree</a></h1><div class="content"><h3 id="TEST-YOURSELF"><a href="#TEST-YOURSELF" class="headerlink" title="TEST YOURSELF"></a>TEST YOURSELF</h3><p>Given the <strong>root</strong> of a binary tree, return its maximum depth.</p>
+<p>A binary tree’s maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.</p>
+<p>Example1:</p>
+<p><img src="/2022/05/31/MaximumDepthofBinaryTree/maxeg1.jpg" alt="Example1"></p>
+<pre><code class="cpp">Input: root = [3,9,20,null,null,15,7]
+Output: 3
+</code></pre>
+<h2 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h2><h3 id="Resursion"><a href="#Resursion" class="headerlink" title="Resursion"></a>Resursion</h3><p>The problem can be solved using either <strong>preorder</strong> (parent left and right) or <strong>postorder</strong> traversal (left and right parent), using preorder to find the <strong>depth</strong> and postorder to find the <strong>height</strong>.</p>
+<ul>
+<li><strong>The depth of a binary tree node:</strong> the number of edges or nodes of the longest simple path from the root node to that node (depending on whether the depth starts at 0 or 1)</li>
+<li><strong>The height of a binary tree node:</strong> the number of edges of the longest simple path from that node to the leaf node (depending on whether the height starts at 0 or 1)</li>
+</ul>
+<p>The height of the root node is the maximum depth of the binary tree, so in this problem we find the maximum depth of the binary tree by the height of the root node in the post-order.</p>
+<p>we start with a post-order traversal (left and right middle) to calculate the height of the tree.</p>
+<ol>
+<li><strong>Determine the parameters and return value of the recursive function:</strong> the parameter is the root node of the incoming tree, and the return returns the depth of the tree, so the return value is of type int.<br>The code is as follows.</li>
+</ol>
+<pre><code class="cpp">int getdepth(treenode* node)
+</code></pre>
+<ol start="2">
+<li><strong>Determine the termination condition:</strong> if the node is empty, 0 is returned, indicating a height of 0.</li>
+</ol>
+<pre><code class="cpp">if (node == NULL) return 0;
+</code></pre>
+<ol start="3">
+<li><strong>The logic for determining the single-level recursion</strong>: <em><strong>first</strong></em> find the depth of its left subtree, <em><strong>then</strong></em> the depth of its right subtree, and <em><strong>finally</strong></em> take the largest value of the left and right depths and add 1 (plus 1 because the current middle node is included) to the depth of the tree whose current node is the root node.</li>
+</ol>
+<pre><code class="cpp">int leftdepth = getdepth(node-&gt;left);       // left
+int rightdepth = getdepth(node-&gt;right);     // right
+int depth = 1 + max(leftdepth, rightdepth); // parent
+return depth;
+</code></pre>
+<p><strong>&amp;C++</strong></p>
+<pre><code class="cpp">class solution &#123;
+public:
+    int getdepth(treenode* node) &#123;
+        if (node == NULL) return 0;
+        int leftdepth = getdepth(node-&gt;left);       // left
+        int rightdepth = getdepth(node-&gt;right);     // right
+        int depth = 1 + max(leftdepth, rightdepth); // parent
+        return depth;
+    &#125;
+    int maxdepth(treenode* root) &#123;
+        return getdepth(root);
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="Iteration"><a href="#Iteration" class="headerlink" title="Iteration"></a>Iteration</h3><p>Using the iterative method, it is most appropriate to use a <strong>level orde</strong>r traversal, because the **maximum depth **is the <em><strong>number of layers</strong></em> in the binary tree, which fits perfectly with the level order traversal.</p>
+<p>As shown in the figure:</p>
+<p><img src="/2022/05/31/MaximumDepthofBinaryTree/max1.jpg" alt="Max_depth By level order traversal"></p>
+<h3 id="amp-C"><a href="#amp-C" class="headerlink" title="&amp;C++"></a>&amp;C++</h3><pre><code class="cpp">class solution &#123;
+public:
+    int maxdepth(treenode* root) &#123;
+        if (root == NULL) return 0;
+        int depth = 0;
+        queue&lt;treenode*&gt; que;
+        que.push(root);
+        while(!que.empty()) &#123;
+            int size = que.size();
+            depth++; // record depth
+            for (int i = 0; i &lt; size; i++) &#123;
+                treenode* node = que.front();
+                que.pop();
+                if (node-&gt;left) que.push(node-&gt;left);
+                if (node-&gt;right) que.push(node-&gt;right);
+            &#125;
+        &#125;
+        return depth;
+    &#125;
+&#125;;
+</code></pre>
+<p><strong>&amp;Java</strong></p>
+<pre><code class="cpp">class solution &#123;
+    /**
+     * Resursion
+     */
+    public int maxDepth(TreeNode root) &#123;
+        if (root == null) &#123;
+            return 0;
+        &#125;
+        int leftDepth = maxDepth(root.left);
+        int rightDepth = maxDepth(root.right);
+        return Math.max(leftDepth, rightDepth) + 1;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="cpp">class solution &#123;
+    /**
+     * Iteration by level order traversal
+     */
+    public int maxDepth(TreeNode root) &#123;
+        if(root == null) &#123;
+            return 0;
+        &#125;
+        Deque&lt;TreeNode&gt; deque = new LinkedList&lt;&gt;();
+        deque.offer(root);
+        int depth = 0;
+        while (!deque.isEmpty()) &#123;
+            int size = deque.size();
+            depth++;
+            for (int i = 0; i &lt; size; i++) &#123;
+                TreeNode node = deque.poll();
+                if (node.left != null) &#123;
+                    deque.offer(node.left);
+                &#125;
+                if (node.right != null) &#123;
+                    deque.offer(node.right);
+                &#125;
+            &#125;
+        &#125;
+        return depth;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="amp-Python"><a href="#amp-Python" class="headerlink" title="&amp;Python"></a>&amp;Python</h3><p><strong>Resursion</strong></p>
+<pre><code class="cpp">class solution:
+    def maxdepth(self, root: treenode) -&gt; int:
+        if not root:
+            return 0
+        return 1 + max(self.maxdepth(root.left), self.maxdepth(root.right))
+</code></pre>
+<p><strong>Iteration</strong></p>
+<pre><code class="cpp">import collections
+class solution:
+    def maxdepth(self, root: treenode) -&gt; int:
+        if not root:
+            return 0
+        depth = 0 #record depth
+        queue = collections.deque()
+        queue.append(root)
+        while queue:
+            size = len(queue)
+            depth += 1
+            for i in range(size):
+                node = queue.popleft()
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+        return depth
+</code></pre>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-04-29T23:00:00.000Z" title="30/04/2022, 00:00:00">2022-04-30</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-10-05T22:22:50.498Z" title="05/10/2022, 23:22:50">2022-10-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Algorithm/">Algorithm</a></span><span class="level-item">3 minutes read (About 402 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/04/30/LevelOrderTraversalofBinaryTree/">Level Order Traversal of Binary Tree</a></h1><div class="content"><p>Given the <strong>root</strong> of a binary tree, return the level order traversal of its nodes’ values. (i.e., from left to right, level by level).</p>
+<p><strong>Example1:</strong></p>
+<p><img src="/2022/04/30/LevelOrderTraversalofBinaryTree/eg1.jpg" alt="Example1"></p>
+<pre><code class="cpp">Input: root = [3,9,20,null,null,15,7]
+Output: [[3],[9,20],[15,7]]
+</code></pre>
+<p><strong>Example2:</strong></p>
+<pre><code class="cpp">Input: root = [1]
+Output: [[1]]
+</code></pre>
+<h2 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h2><p>Level order Traversal:<br> This means traversing the binary tree one layer at a time from left to right.<br>This is achieved by borrowing an auxiliary data structure: the queue, which is FIFO(first-in-first-out), in line with the logic of layer-by-layer traversal.</p>
+<p>This level order traversal is the breadth-first traversal in graph theory, except that we apply it to binary trees.</p>
+<p>A breadth-first traversal of a binary tree using a queue is as follows.</p>
+<p><img src="/2022/04/30/LevelOrderTraversalofBinaryTree/fifo1.jpg" alt="FIFO_1"></p>
+<p><img src="/2022/04/30/LevelOrderTraversalofBinaryTree/fifo2.jpg" alt="FIFO_2"></p>
+<p><img src="/2022/04/30/LevelOrderTraversalofBinaryTree/fifo3.jpg" alt="FIFO_3"></p>
+<p><img src="/2022/04/30/LevelOrderTraversalofBinaryTree/fifo4.jpg" alt="FIFO_4"></p>
+<h3 id="amp-C"><a href="#amp-C" class="headerlink" title="&amp;C++"></a>&amp;C++</h3><pre><code class="cpp">class Solution &#123;
+public:
+    vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) &#123;
+        queue&lt;TreeNode*&gt; que;
+        if (root != NULL) que.push(root);
+        vector&lt;vector&lt;int&gt;&gt; result;
+        while (!que.empty()) &#123;
+            int size = que.size();
+            vector&lt;int&gt; vec;
+            // fixed siize(since que.size is changing)            for (int i = 0; i &lt; size; i++) &#123;
+                TreeNode* node = que.front();
+                que.pop();
+                vec.push_back(node-&gt;val);
+                if (node-&gt;left) que.push(node-&gt;left);
+                if (node-&gt;right) que.push(node-&gt;right);
+            &#125;
+            result.push_back(vec);
+        &#125;
+        return result;
+    &#125;
+&#125;;
+</code></pre>
+<p><strong>Iteration</strong></p>
+<pre><code class="cpp">class Solution &#123;
+public:
+    void order(TreeNode* cur, vector&lt;vector&lt;int&gt;&gt;&amp; result, int depth)
+    &#123;
+        if (cur == nullptr) return;
+        if (result.size() == depth) result.push_back(vector&lt;int&gt;());
+        result[depth].push_back(cur-&gt;val);
+        order(cur-&gt;left, result, depth + 1);
+        order(cur-&gt;right, result, depth + 1);
+    &#125;
+    vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) &#123;
+        vector&lt;vector&lt;int&gt;&gt; result;
+        int depth = 0;
+        order(root, result, depth);
+        return result;
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="amp-Java"><a href="#amp-Java" class="headerlink" title="&amp;Java"></a>&amp;Java</h3><p>&#96;&#96;&#96; cpp<br>class Solution {<br>    public List&lt;List<Integer>&gt; resList &#x3D; new ArrayList&lt;List<Integer>&gt;();</p>
+<pre><code>public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;
+    //checkFun01(root,0);
+    checkFun02(root);
+
+    return resList;
+&#125;
+
+//DFS--Resursion
+public void checkFun01(TreeNode node, Integer deep) &#123;
+    if (node == null) return;
+    deep++;
+
+    if (resList.size() &lt; deep) &#123;
+        //when number of level is larger,the item of list is larger. we use the index of list to distinguish diffrent levels
+        List&lt;Integer&gt; item = new ArrayList&lt;Integer&gt;();
+        resList.add(item);
+    &#125;
+    resList.get(deep - 1).add(node.val);
+
+    checkFun01(node.left, deep);
+    checkFun01(node.right, deep);
+&#125;
+
+//BFS--Iteration--use queue
+public void checkFun02(TreeNode node) &#123;
+    if (node == null) return;
+    Queue&lt;TreeNode&gt; que = new LinkedList&lt;TreeNode&gt;();
+    que.offer(node);
+
+    while (!que.isEmpty()) &#123;
+        List&lt;Integer&gt; itemList = new ArrayList&lt;Integer&gt;();
+        int len = que.size();
+
+        while (len &gt; 0) &#123;
+            TreeNode tmpNode = que.poll();
+            itemList.add(tmpNode.val);
+
+            if (tmpNode.left != null) que.offer(tmpNode.left);
+            if (tmpNode.right != null) que.offer(tmpNode.right);
+            len--;
+        &#125;
+
+        resList.add(itemList);
+    &#125;
+
+&#125;
+&#125;
+```
+</code></pre>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-04-11T23:00:00.000Z" title="12/04/2022, 00:00:00">2022-04-12</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-10-05T23:22:44.000Z" title="06/10/2022, 00:22:44">2022-10-06</time></span><span class="level-item"><a class="link-muted" href="/categories/Algorithm/">Algorithm</a></span><span class="level-item">5 minutes read (About 708 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/04/12/RecursiveTraversalofBinaryTree/">Recursive Traversal of Binary Tree</a></h1><div class="content"><p><strong>Three elements</strong> of the <em><strong>recursive</strong></em> algorithm：</p>
+<ol>
+<li><p><strong>Determine the parameters and return value of the recursive function:</strong> Determine which parameters need to be handled during the recursion process, then add this parameter to the recursive function, and also define what the return value of each recursion is and thus determine the return type of the recursive function.</p>
+</li>
+<li><p><strong>Determine the termination conditions:</strong> After writing a recursive algorithm, when running it, we will often encounter a stack overflow error, that is, we have not written the termination conditions or the termination conditions are not written correctly.</p>
+</li>
+<li><p><strong>The logic for determining a single level of recursion:</strong> Determine the information that needs to be processed at each level of recursion. Here too, the call itself is repeated to implement the recursion process.</p>
+</li>
+</ol>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example:"></a>Example:</h3><p>The following is an example of a <strong>preorder traversal</strong>.</p>
+<ol>
+<li><strong>Determine the parameters of the recursive function and return value:</strong> because to print out the value of the node of the preorder traversal, so the parameters need to be passed in the vector in the value of the node put, in addition to this point will not need to deal with what data is also not required to have a return value, so the recursive function return type is void:</li>
+</ol>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">traversal</span><span class="params">(TreeNode* cur, vector&lt;<span class="type">int</span>&gt;&amp; vec)</span></span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><strong>Determine the termination conditions:</strong> in the process of recursion, how is the recursion is considered to end it, of course, the current traversal of the node is empty, then this layer of recursion is going to end, so if the current traversal of this node is empty, it is a direct return:</li>
+</ol>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (cur == <span class="literal">NULL</span>) <span class="keyword">return</span>;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><strong>Determine the logic of the single-level recursion:</strong> preorder traversal is the <strong>middle-left-right</strong> order, so the logic in the single-level recursion, is to first take the value of the node:</li>
+</ol>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vec.<span class="built_in">push_back</span>(cur-&gt;val);    <span class="comment">// in</span></span><br><span class="line"><span class="built_in">traversal</span>(cur-&gt;left, vec);  <span class="comment">//left</span></span><br><span class="line"><span class="built_in">traversal</span>(cur-&gt;right, vec); <span class="comment">// right</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Pre-Order</strong>: (Visit the parent node first, then the left and right nodes in turn)</li>
+</ul>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">traversal</span><span class="params">(TreeNode* cur, vector&lt;<span class="type">int</span>&gt;&amp; vec)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cur == <span class="literal">NULL</span>) <span class="keyword">return</span>;</span><br><span class="line">        vec.<span class="built_in">push_back</span>(cur-&gt;val);    <span class="comment">// parent</span></span><br><span class="line">        <span class="built_in">traversal</span>(cur-&gt;left, vec);  <span class="comment">// left</span></span><br><span class="line">        <span class="built_in">traversal</span>(cur-&gt;right, vec); <span class="comment">// right</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; result;</span><br><span class="line">        <span class="built_in">traversal</span>(root, result);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>In-Order</strong>：(Visit the left node first, then the parent and right nodes in turn)</li>
+</ul>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">traversal</span><span class="params">(TreeNode* cur, vector&lt;<span class="type">int</span>&gt;&amp; vec)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (cur == <span class="literal">NULL</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="built_in">traversal</span>(cur-&gt;left, vec);  <span class="comment">// left</span></span><br><span class="line">    vec.<span class="built_in">push_back</span>(cur-&gt;val);    <span class="comment">// parent</span></span><br><span class="line">    <span class="built_in">traversal</span>(cur-&gt;right, vec); <span class="comment">// right</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><strong>Post-Order</strong>：(Visit the left node first, then the right and parent nodes in turn)</li>
+</ul>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">traversal</span><span class="params">(TreeNode* cur, vector&lt;<span class="type">int</span>&gt;&amp; vec)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (cur == <span class="literal">NULL</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="built_in">traversal</span>(cur-&gt;left, vec);  <span class="comment">// left</span></span><br><span class="line">    <span class="built_in">traversal</span>(cur-&gt;right, vec); <span class="comment">// right</span></span><br><span class="line">    vec.<span class="built_in">push_back</span>(cur-&gt;val);    <span class="comment">// parent</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="amp-Java"><a href="#amp-Java" class="headerlink" title="&amp;Java"></a>&amp;Java</h3> <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Pre-Order-Recursion</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; result = <span class="keyword">new</span> <span class="built_in">ArrayList</span>&lt;Integer&gt;();</span><br><span class="line">        <span class="built_in">preorder</span>(root, result);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="type">void</span> <span class="title">preorder</span><span class="params">(TreeNode root, List&lt;Integer&gt; result)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == null) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        result.<span class="built_in">add</span>(root.val);</span><br><span class="line">        <span class="built_in">preorder</span>(root.left, result);</span><br><span class="line">        <span class="built_in">preorder</span>(root.right, result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// In-Order-Recursion</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="built_in">inorder</span>(root, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">inorder</span><span class="params">(TreeNode root, List&lt;Integer&gt; list)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == null) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">inorder</span>(root.left, list);</span><br><span class="line">        list.<span class="built_in">add</span>(root.val);             <span class="comment">// </span></span><br><span class="line">        <span class="built_in">inorder</span>(root.right, list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Post-Order-Recursion</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">postorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="built_in">postorder</span>(root, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">postorder</span><span class="params">(TreeNode root, List&lt;Integer&gt; list)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == null) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">postorder</span>(root.left, list);</span><br><span class="line">        <span class="built_in">postorder</span>(root.right, list);</span><br><span class="line">        list.<span class="built_in">add</span>(root.val);             <span class="comment">// </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="amp-Python"><a href="#amp-Python" class="headerlink" title="&amp;Python"></a>&amp;Python</h3> <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"># Pre-Order-Recursion</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="function">def <span class="title">preorderTraversal</span><span class="params">(self, root: TreeNode)</span> -&gt; List[<span class="type">int</span>]:</span></span><br><span class="line"><span class="function">        # save result</span></span><br><span class="line"><span class="function">        result =</span> []</span><br><span class="line">        </span><br><span class="line">        <span class="function">def <span class="title">traversal</span><span class="params">(root: TreeNode)</span>:</span></span><br><span class="line"><span class="function">            if root =</span>= None:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            result.<span class="built_in">append</span>(root.val) <span class="meta"># parent</span></span><br><span class="line">            <span class="built_in">traversal</span>(root.left)    <span class="meta"># left</span></span><br><span class="line">            <span class="built_in">traversal</span>(root.right)   <span class="meta"># right</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">traversal</span>(root)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"># In-Order-Recursion</span><br><span class="line"><span class="keyword">class</span> Solution:</span><br><span class="line">    def <span class="built_in">inorderTraversal</span>(self, root: TreeNode) -&gt; List[<span class="type">int</span>]:</span><br><span class="line">        result = []</span><br><span class="line"></span><br><span class="line">        def <span class="built_in">traversal</span>(root: TreeNode):</span><br><span class="line">            <span class="keyword">if</span> root == None:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="built_in">traversal</span>(root.left)    <span class="meta"># left</span></span><br><span class="line">            result.<span class="built_in">append</span>(root.val) <span class="meta"># parent</span></span><br><span class="line">            <span class="built_in">traversal</span>(root.right)   <span class="meta"># right</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">traversal</span>(root)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"># Post-Order-Recursion</span><br><span class="line"><span class="keyword">class</span> Solution:</span><br><span class="line">    def <span class="built_in">postorderTraversal</span>(self, root: TreeNode) -&gt; List[<span class="type">int</span>]:</span><br><span class="line">        result = []</span><br><span class="line"></span><br><span class="line">        def <span class="built_in">traversal</span>(root: TreeNode):</span><br><span class="line">            <span class="keyword">if</span> root == None:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="built_in">traversal</span>(root.left)    <span class="meta"># left</span></span><br><span class="line">            <span class="built_in">traversal</span>(root.right)   <span class="meta"># right</span></span><br><span class="line">            result.<span class="built_in">append</span>(root.val) <span class="meta"># parent</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">traversal</span>(root)</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure></div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/tags/C-C/page/0/">Previous</a></div><div class="pagination-next"><a href="/tags/C-C/page/2/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/tags/C-C/">1</a></li><li><a class="pagination-link" href="/tags/C-C/page/2/">2</a></li><li><a class="pagination-link" href="/tags/C-C/page/3/">3</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Your name"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Your name</p><p class="is-size-6 is-block">Your title</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Your location</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">24</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Category</p><a href="/categories"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">17</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Algorithm/"><span class="level-start"><span class="level-item">Algorithm</span></span><span class="level-end"><span class="level-item tag">24</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-29T23:00:00.000Z">2022-09-30</time></p><p class="title"><a href="/2022/09/30/LetterCombinationsofaPhoneNumber/">Letter Combinations of a Phone Number</a></p><p class="categories"><a href="/categories/Algorithm/">Algorithm</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-14T23:00:00.000Z">2022-09-15</time></p><p class="title"><a href="/2022/09/15/Combinations-Pruning/">Combinations-Pruning</a></p><p class="categories"><a href="/categories/Algorithm/">Algorithm</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-30T23:00:00.000Z">2022-08-31</time></p><p class="title"><a href="/2022/08/31/BackTracking-Combinations/">BackTracking-Combinations</a></p><p class="categories"><a href="/categories/Algorithm/">Algorithm</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-14T23:00:00.000Z">2022-08-15</time></p><p class="title"><a href="/2022/08/15/BackTrackingAlgorithmBasic/">BackTracking Algorithm Basic</a></p><p class="categories"><a href="/categories/Algorithm/">Algorithm</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-07-30T23:00:00.000Z">2022-07-31</time></p><p class="title"><a href="/2022/07/31/ConvertSortedArraytoBinarySearchTree/">Convert Sorted Array to Binary Search Tree</a></p><p class="categories"><a href="/categories/Algorithm/">Algorithm</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">September 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/08/"><span class="level-start"><span class="level-item">August 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/07/"><span class="level-start"><span class="level-item">July 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">June 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/05/"><span class="level-start"><span class="level-item">May 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">April 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">March 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">February 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">January 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">November 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">October 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Array/"><span class="tag">Array</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/BackTracking/"><span class="tag">BackTracking</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/BinarySearchTree/"><span class="tag">BinarySearchTree</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/BinaryTree/"><span class="tag">BinaryTree</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C-C/"><span class="tag">C/C++</span><span class="tag">23</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Combination/"><span class="tag">Combination</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/DoublePointers/"><span class="tag">DoublePointers</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Iteration/"><span class="tag">Iteration</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">21</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LinkedList/"><span class="tag">LinkedList</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linkedlist/"><span class="tag">Linkedlist</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Pruning/"><span class="tag">Pruning</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">11</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Resursion/"><span class="tag">Resursion</span><span class="tag">10</span></a></div><div class="control"><a class="tags has-addons" href="/tags/String/"><span class="tag">String</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/TraversalOfBinaryTree/"><span class="tag">TraversalOfBinaryTree</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/loop-invariant/"><span class="tag">loop invariant</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Hexo" height="28"></a><p class="is-size-7"><span>&copy; 2023 John Doe</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
