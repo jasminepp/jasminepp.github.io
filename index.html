@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Hexo</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Hexo"><meta name="msapplication-TileImage" content="/img/avatar.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hexo"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Hexo"><meta property="og:url" content="http://example.com/"><meta property="og:site_name" content="Hexo"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:author" content="John Doe"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com"},"headline":"Hexo","image":["http://example.com/img/og_image.png"],"author":{"@type":"Person","name":"John Doe"},"publisher":{"@type":"Organization","name":"Hexo","logo":{"@type":"ImageObject","url":{"text":"Tianhao'Site"}}},"description":""}</script><link rel="icon" href="/img/avatar.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="jasmine"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="jasmine"></script><!--!--><!-- hexo injector head_end start --><script>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Jasmine</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Jasmine"><meta name="msapplication-TileImage" content="/img/avatar.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Jasmine"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Jasmine"><meta property="og:url" content="http://example.com/"><meta property="og:site_name" content="Jasmine"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:author" content="John Doe"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com"},"headline":"Jasmine","image":["http://example.com/img/og_image.png"],"author":{"@type":"Person","name":"John Doe"},"publisher":{"@type":"Organization","name":"Jasmine","logo":{"@type":"ImageObject","url":{"text":"Tianhao'Site"}}},"description":""}</script><link rel="icon" href="/img/avatar.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="jasmine"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="jasmine"></script><!--!--><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -97,230 +97,15 @@
 <li><strong>Protect from noise in negative labels –&gt; keep temperature low</strong></li>
 </ul>
 <p>Overall, the choice of T is related to the size of the Net-S. When the number of Net-S parameters is small, a relatively low temperature is sufficient (because models with a small number of parameters can’t capture all the knowledge, so they can appropriately ignore some of the negative labels).</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-14T23:00:00.000Z" title="15/09/2023, 00:00:00">2023-09-15</time></span><span class="level-item"><a class="link-muted" href="/categories/Deep-Learning/">Deep Learning</a></span><span class="level-item">10 minutes read (About 1468 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/09/15/KD01/">Knowledge DistillationI</a></h1><div class="content"><h3 id="1-Background"><a href="#1-Background" class="headerlink" title="1 Background"></a>1 Background</h3><p>Although in general we don’t try to distinguish between the models used for training and deployment, there is a certain <strong>inconsistency</strong> between training and deployment:</p>
+</div></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2023/09/15/KD01/"><img class="fill" src="https://github.com/jasminepp/jasminepp.github.io/blob/master/2023/09/15/KD01/img4.png" alt="Knowledge DistillationI"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-09-14T23:00:00.000Z" title="15/09/2023, 00:00:00">2023-09-15</time></span><span class="level-item"><a class="link-muted" href="/categories/Deep-Learning/">Deep Learning</a></span><span class="level-item">10 minutes read (About 1469 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/09/15/KD01/">Knowledge DistillationI</a></h1><div class="content"><h3 id="1-Background"><a href="#1-Background" class="headerlink" title="1 Background"></a>1 Background</h3><p>Although in general we don’t try to distinguish between the models used for training and deployment, there is a certain <strong>inconsistency</strong> between training and deployment:</p>
 <p>During <strong>training</strong>, we need to use complex models with large computational resources in order to extract information from very large, highly redundant datasets. In experiments, the models that work best tend to be very large, or even obtained by integrating multiple models. Whereas large models are not easy to deploy into services, common limitations are as follows.</p>
 <ul>
 <li><strong>Slow inference speed</strong></li>
 <li><strong>High deployment resource requirements (memory, graphics memory, etc.)</strong></li>
-</ul>
-<p>During <strong>deployment</strong>, we have strict limits on latency as well as computational resources.<br>Therefore, model compression (reducing the number of model parameters while maintaining performance) becomes an important issue. Model distillation is one of the methods of model compression.</p>
-<h3 id="2-Rationale-for-knowledge-distillation"><a href="#2-Rationale-for-knowledge-distillation" class="headerlink" title="2 Rationale for knowledge distillation"></a>2 Rationale for knowledge distillation</h3><h4 id="2-1-Teacher-Model-and-Student-Model"><a href="#2-1-Teacher-Model-and-Student-Model" class="headerlink" title="2.1 Teacher Model and Student Model"></a>2.1 Teacher Model and Student Model</h4><p>Knowledge distillation uses the Teacher-Student model, in which the teacher is the output of “knowledge” and the student is the recipient of “knowledge”. The process of knowledge distillation is divided into 2 stages.</p>
-<ol>
-<li><strong>Original model training</strong>: Training the “<strong>Teacher model</strong>“, referred to as <strong>Net-T</strong>, which is characterised by a relatively complex model, and can also be integrated from multiple separately trained models. We do not impose any restrictions on the Teacher model in terms of model architecture, number of parameters, or whether it is integrated or not, the only requirement is that, for input X, it can output Y, where Y is mapped by <strong>softmax</strong>, and the output value corresponds to the probability value of the corresponding category.</li>
-<li><strong>Streamlined model training</strong>: Train the “<strong>Student model</strong>“, abbreviated as <strong>Net-S</strong>, which is a single model with a <em><u>small number of parameters and a relatively simple model structure</u></em>. Similarly, for input X, it is possible to output Y, which is <strong>softmax</strong> mapped to the probability value of the corresponding category.</li>
-</ol>
-<h4 id="2-2-Key-points-in-knowledge-distillation"><a href="#2-2-Key-points-in-knowledge-distillation" class="headerlink" title="2.2 Key points in knowledge distillation"></a>2.2 Key points in knowledge distillation</h4><p>If we go back to the most basic theory of machine learning, we can clearly realise one thing (which is often overlooked after we delve into machine learning): the most fundamental aim of machine learning is to train models that <strong>generalise well</strong> to a given problem.</p>
-<ul>
-<li><p><strong>Generalisation</strong>: the relationship between inputs and outputs is well represented on all data for a problem, <strong>whether it’s training data, test data, or any unknown data</strong> belonging to the problem.</p>
-<p>In reality, since it is impossible to collect all the data for a problem as training data, and new data are always being generated, we have to settle for the second best, and the training goal becomes modelling the relationship between inputs and outputs on the existing training dataset. Since the training dataset is a sampling of the real data distribution, <strong>the optimal solution on the training dataset tends to deviate more or less from the real optimal solution</strong></p>
-</li>
-</ul>
-<p>And when it comes to <strong>knowledge distillation</strong>, since we already have a Net-T with strong generalisation capability, we can directly let Net-S learn the generalisation capability of Net-T when we use Net-T to distill the training Net-S.</p>
-<p>A straightforward and efficient way to <strong>migrate the generalisation ability is to use the probabilities of the categories output from the softmax layer as the “soft target”.</strong></p>
-<p><strong>[Comparison between the KD training process and the traditional training process]</strong></p>
-<ul>
-<li>Traditional training process (hard targets): <em><u>find the great likelihood of ground truth</u></em>.</li>
-<li>KD’s training process (soft targets): <em><u>use class probabilities of large model as soft targets</u></em>.</li>
-</ul>
-<p><img src="/2023/09/15/KD01/img1.png"></p>
-<h4 id="Why-is-the-KD-training-process-more-efficient"><a href="#Why-is-the-KD-training-process-more-efficient" class="headerlink" title="Why is the KD training process more efficient?"></a>Why is the KD training process more efficient?</h4><p>The output of the softmax layer, in addition to the positive examples, the <strong>negative labels also carry a lot of information</strong>, for example, some negative labels correspond to probabilities much larger than other negative labels. Whereas in the <strong>traditional</strong> training process (hard target), <strong>all negative labels are treated uniformly</strong>. In other words, the <em><strong>KD training approach makes each sample bring more information to Net-S than the traditional training approach.</strong></em></p>
-<h4 id="2-3-The-softmax-function"><a href="#2-3-The-softmax-function" class="headerlink" title="2.3 The softmax function"></a>2.3 The softmax function</h4><p>Let’s review the original softmax function.</p>
-<p><img src="/2023/09/15/KD01/img2.png"></p>
-<p>However, if we use the output of the softmax layer as the soft target, there is another problem: <strong>when the entropy of the softmax output is relatively small, the negative labels are close to 0</strong>, and their contribution to the loss function is very small, so small that it can be ignored. Therefore, the variable “<strong>temperature</strong>“ comes in handy.</p>
-<p>The following formula shows the softmax function after adding the temperature variable.</p>
-<p><img src="/2023/09/15/KD01/img3.png"></p>
-<p>Here T is the temperature.<br>The original softmax function is a special case of T &#x3D; 1. <em>The higher T is, the <strong>smoother</strong> the output probability distribution of softmax tends to be, the <strong>higher</strong> the entropy of its distribution is, the information carried by negative labels will be relatively amplified</em>, and the model training will <strong>pay more attention to negative labels</strong>.</p>
-<h3 id="3-Specific-methods-of-knowledge-distillation"><a href="#3-Specific-methods-of-knowledge-distillation" class="headerlink" title="3 Specific methods of knowledge distillation"></a>3 Specific methods of knowledge distillation</h3><h4 id="3-1-Generic-Approach-to-Knowledge-Distillation"><a href="#3-1-Generic-Approach-to-Knowledge-Distillation" class="headerlink" title="3.1. Generic Approach to Knowledge Distillation"></a>3.1. Generic Approach to Knowledge Distillation</h4><ul>
-<li>The first step is to train Net-T; </li>
-<li>the second step is to distil the knowledge from Net-T to Net-S at high temperature T</li>
-</ul>
-<p><img src="/2023/09/15/KD01/img4.png"></p>
-<p><strong>The process of high temperature distillation</strong>: The objective function of the distillation process is weighted by the <em><strong>distill loss</strong></em> (corresponding to the <strong>soft target</strong>) and the <em><strong>student loss</strong></em> (corresponding to the <strong>hard target</strong>). The diagram is shown above.</p>
-<p><img src="/2023/09/15/KD01/img5.png"></p>
-<p><img src="/2023/09/15/KD01/img6.png"></p>
-<p>Net-T and Net-S are input into the <strong>transfer set</strong> at the same time (here we can directly reuse the training set used to train Net-T), and the softmax distribution (with high temperature) generated by Net-T is used as the <strong>soft target</strong>, and the cross entropy of the softmax output of Net-S and the soft target under the same temperature T is the <strong>first part</strong> of the Loss function:</p>
-<p><img src="/2023/09/15/KD01/img7.png"></p>
-<p><img src="/2023/09/15/KD01/img8.png"></p>
-<p>The softmax output of Net-S for T &#x3D; 1 and the <u>cross entropy of the ground truth</u> is the <strong>second part</strong> of the Loss function</p>
-<p><img src="/2023/09/15/KD01/img9.png"></p>
-<p><img src="/2023/09/15/KD01/img10.png"></p>
-<ul>
-<li>The <strong>necessity of the second part of the Loss</strong> is actually quite easy to understand: Net-T also has a certain error rate, and the use of ground truth can effectively reduce the possibility of the error being propagated to the Net-S. For example, although a teacher is far more knowledgeable than a student, he may still make mistakes, and if the student can refer to the standard answer in addition to the teacher’s teaching, it can effectively reduce the possibility of being “led astray” by the teacher’s occasional mistakes.</li>
-</ul>
-<h3 id="4-Discussion-on-“temperature”"><a href="#4-Discussion-on-“temperature”" class="headerlink" title="4 Discussion on “temperature”"></a>4 Discussion on “temperature”</h3><p>We all know that “distillation” needs to be carried out at high temperatures, so what does the temperature of this “distillation” represent and how is the appropriate temperature chosen?</p>
-<h4 id="4-1-Characteristics-of-temperature"><a href="#4-1-Characteristics-of-temperature" class="headerlink" title="4.1. Characteristics of temperature"></a><strong>4.1. Characteristics of temperature</strong></h4><p>Before answering this question, it is useful to discuss the <strong>characteristics of the temperature T</strong></p>
-<ol>
-<li><p>The original softmax function is a special case of <strong>T&#x3D;1</strong><br> When <strong>T&lt;1** the probability distribution is “steeper” than the original, and When **T&gt;1</strong> the probability distribution is “flatter” than the original. </p>
-</li>
-<li><p>The higher the temperature, the more evenly distributed the softmax values are (think about the extreme case:</p>
-<p> (i) The softmax values are <strong>uniformly distributed</strong> when <strong>T &#x3D;   ∞</strong></p>
-<p> (ii) The softmax values are equal to <em>argmax</em> when <strong>T-&gt;0</strong> i.e., the value at the maximum probability tends to 1, while the other values tend to 0)</p>
-<p>Regardless of the value of the temperature T, the soft target <strong>has a tendency to ignore relatively small</strong><br> <strong>information</strong> that it carries</p>
-</li>
-</ol>
-<h4 id="4-2-what-does-temperature-represent-and-how-to-pick-the-right-one"><a href="#4-2-what-does-temperature-represent-and-how-to-pick-the-right-one" class="headerlink" title="4.2. what does temperature represent and how to pick the right one?"></a>4.2. what does temperature represent and how to pick the right one?</h4><p><strong>What the temperature changes is how much attention is paid to the negative labels during Net-S training</strong>: when the temperature is <strong>low, less attention is paid to the negative labels</strong>, especially those that are significantly lower than the average; while when the temperature is <strong>high, the values associated with the negative labels will be relatively larger</strong>, and Net-S will pay relatively more attention to the negative labels.</p>
-<p>In fact, negative labels contain certain information, especially those with values significantly higher than the mean. However, due to the training process of Net-T, it is decided that the negative label part is relatively noisy, and the lower the value of the negative label, the less reliable its information is. Therefore the temperature selection is more empirical, essentially a trade-off between the following two things.</p>
-<ul>
-<li><strong>Learning from negative labels that are partially informative –&gt; Temperature to be higher</strong></li>
-<li><strong>Protect from noise in negative labels –&gt; keep temperature low</strong></li>
-</ul>
-<p>Overall, the choice of T is related to the size of the Net-S. When the number of Net-S parameters is small, a relatively low temperature is sufficient (because models with a small number of parameters can’t capture all the knowledge, so they can appropriately ignore some of the negative labels).</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-08-29T23:00:00.000Z" title="30/08/2023, 00:00:00">2023-08-30</time></span><span class="level-item"><a class="link-muted" href="/categories/Deep-Learning/">Deep Learning</a></span><span class="level-item">7 minutes read (About 1110 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/08/30/ModelCompressionPruning/">Model Compression - Pruning</a></h1><div class="content"><h5 id="Why-is-the-Neural-Network-Pruning-Why"><a href="#Why-is-the-Neural-Network-Pruning-Why" class="headerlink" title="Why is the Neural Network Pruning (Why?)"></a>Why is the Neural Network Pruning (Why?)</h5><p>Much of the success of convolutional neural networks stems from larger and larger network architectures and more and more neurons. While this allows neural networks to perform better in many tasks, it also puts more demands on computer hardware:  <strong>more arithmetic power</strong>, <strong>more storage space</strong>. However,  this makes the cost of using neural networks skyrocket, a problem that cannot be ignored in edge devices.</p>
+</ul></div><a class="article-more button is-small is-size-7" href="/2023/09/15/KD01/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-08-29T23:00:00.000Z" title="30/08/2023, 00:00:00">2023-08-30</time></span><span class="level-item"><a class="link-muted" href="/categories/Deep-Learning/">Deep Learning</a></span><span class="level-item">7 minutes read (About 1110 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/08/30/ModelCompressionPruning/">Model Compression - Pruning</a></h1><div class="content"><h5 id="Why-is-the-Neural-Network-Pruning-Why"><a href="#Why-is-the-Neural-Network-Pruning-Why" class="headerlink" title="Why is the Neural Network Pruning (Why?)"></a>Why is the Neural Network Pruning (Why?)</h5><p>Much of the success of convolutional neural networks stems from larger and larger network architectures and more and more neurons. While this allows neural networks to perform better in many tasks, it also puts more demands on computer hardware:  <strong>more arithmetic power</strong>, <strong>more storage space</strong>. However,  this makes the cost of using neural networks skyrocket, a problem that cannot be ignored in edge devices.</p>
 <p>Model compression looks to <strong>reduce model size</strong> while minimising the loss of accuracy. Neural network pruning achieves model compression by removing <strong>unnecessary weights</strong> (e.g., weights below a certain threshold) and <strong>neurons</strong> (ReLU, Dropout, and other nonlinear functions that bring about zero-setting operations, etc.)</p>
 <h4 id="What-is-the-Neural-Network-Pruning-What"><a href="#What-is-the-Neural-Network-Pruning-What" class="headerlink" title="What is the Neural Network Pruning (What?)"></a>What is the Neural Network Pruning (What?)</h4><p><strong>Pruning</strong> is the process of removing redundant <em><u>channels</u></em>, <em><u>filters</u></em>, <em><u>neurons</u></em>, and <u><em>layers</em></u> from a network in order to obtain a lighter weight network without compromising performance.</p>
-<p><img src="/2023/08/30/ModelCompressionPruning/img1.png"></p></div><a class="article-more button is-small is-size-7" href="/2023/08/30/ModelCompressionPruning/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-08-14T23:00:00.000Z" title="15/08/2023, 00:00:00">2023-08-15</time></span><span class="level-item"><a class="link-muted" href="/categories/Deep-Learning/">Deep Learning</a></span><span class="level-item">15 minutes read (About 2241 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/08/15/Activation/">Activation Function</a></h1><div class="content"><h3 id="I-What-is-an-activation-function"><a href="#I-What-is-an-activation-function" class="headerlink" title="I. What is an activation function?"></a>I. What is an activation function?</h3><p>In contact with the deep learning, especially in the neural network, we will find that in each layer of the neural network output will use a function (such as sigmoid, tanh, Relu, etc.) on the results of the operation, this function is the <strong>activation function</strong> . So <em>why do we need to add an activation function? And what are the problems if you don’t add it?</em></p>
-<p>Firstly, we know that neural networks mimic the workings of human neurons, and an activation function is a function added to an artificial neural network to help it <strong>learn complex patterns</strong> in the data. In a neuron, the input is weighted and summed in a series of weighted sums and then applied to another function, which is the activation function in this case. Similar to the neuron-based model of the human brain, the activation function ultimately determines whether or not a signal is delivered and what is to be fired to the next neuron. In an artificial neural network, the activation function of a node defines the output of that node for a given input or set of inputs. </p>
-<p>Activation functions can be classified as <strong>linear activation functions</strong> (linear equations controlling the mapping of inputs to outputs, e.g., f(x) &#x3D; x, etc.) and <strong>nonlinear activation functions</strong> (nonlinear equations controlling the mapping of inputs to outputs, e.g., Sigmoid, Tanh, ReLU, LReLU, PReLU, Swish, etc.)</p>
-<h4 id="why-do-we-need-to-use-the-activation-function"><a href="#why-do-we-need-to-use-the-activation-function" class="headerlink" title="why do we need to use the activation function?"></a>why do we need to use the activation function?</h4><p>Because the input and output of each layer of a neural network is a linear summation process, the output of the next layer is just a linear transformation of the input function of the previous layer, so if there is no activation function, then no matter how complex the neural network you constructed, how many layers, the final output is a linear combination of inputs, and the <strong>purely linear combination is not capable of solving more complex problems</strong>. After introducing the activation function, we will find that the common activation function is non-linear, so it also introduces a non-linear element to the neuron, which allows the neural network to approximate any other non-linear function, which can make the neural network applied to more non-linear models.</p>
-<p><img src="/2023/08/15/Activation/img1.png"></p>
-<p>In general, the activation function is an important part in neurons, and in order to enhance the representation and learning ability of the network, the activation functions of neural networks are nonlinear and usually have the following properties:</p>
-<ul>
-<li><strong>Continuous and differentiable</strong> (allowing for non-derivable at a few points), a differentiable activation function can be used directly to learn the network parameters using numerical optimisation methods;</li>
-<li>The activation function and its derivatives should be as <strong>simple</strong> as possible; too much complexity is not conducive to improving the network computation rate;</li>
-<li>The <strong>value domain</strong> of the derivative of the activation function should be in a suitable interval, not too big or too small, otherwise it will affect the efficiency and stability of training</li>
-</ul>
-<h4 id><a href="#" class="headerlink" title></a></h4><h3 id="II-Common-activation-functions"><a href="#II-Common-activation-functions" class="headerlink" title="II. Common activation functions"></a>II. Common activation functions</h3><ol>
-<li><h5 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h5><p>Sigmoid function, also called <strong>Logistic function</strong>, is used for the output of the hidden layer neuron, the value range is (0,1), it can map a real number to the interval (0,1), can be used to do binary classification, the effect is better when the feature difference is more complex or the difference is not particularly large. sigmoid is a very common activation function, the function expression is as follows:</p>
-<p><img src="/2023/08/15/Activation/img2.png"></p>
-</li>
-</ol>
-<p>​       The image resembles an S-curve</p>
-<p><img src="/2023/08/15/Activation/img3.jfif"></p>
-<p><strong>The condition to use the Sigmoid activation function:</strong></p>
-<ul>
-<li><strong>The Sigmoid function has an output range of 0 to 1</strong>. Since the output value is limited to 0 to 1, it normalises the output of each neuron;</li>
-<li><strong>A model used to take the predicted probability as an output</strong>. The Sigmoid function is well suited since the probabilities take values from 0 to 1;</li>
-<li><strong>Gradient smoothing</strong> to avoid ‘jumpy’ output values;</li>
-<li><strong>The function is differentiable</strong>. This means that the slope of the sigmoid curve can be found for any two points;</li>
-<li><strong>Clear prediction</strong>, i.e. very close to 1 or 0.</li>
-</ul>
-<p><strong>Shortcomings of the Sigmoid activation function:</strong></p>
-<ul>
-<li><strong>The gradient vanishes</strong>: note that the rate of change of the sigmoid function flattens out as it approaches 0 and 1, i.e. the gradient of the sigmoid tends to 0. When a neural network is backpropagated using the sigmoid activation function, neurons with outputs close to 0 or 1 have their gradient approaching 0. These neurons are called <strong>saturated neurons</strong>. Therefore, the weights of these neurons <u>are not updated</u>. In addition, the weights of the neurons connected to such neurons are also updated very slowly. The problem is called <strong>gradient vanishing</strong>. Thus, imagine a large neural network containing Sigmoid neurons, many of which are saturated, then the network cannot perform backpropagation.</li>
-<li><strong>Non-zero centred</strong>: Sigmoid outputs are not zero centred, the output is constantly greater than 0. Non-zero centred outputs cause the inputs of the neurons in the subsequent layer to undergo a Bias Shift, which further slows down the convergence of the gradient descent.</li>
-<li><strong>Computationally expensive</strong>: The exp() function is computationally expensive and slower to run on a computer than other nonlinear activation functions.</li>
-</ul>
-<ol start="2">
-<li><h5 id="Tanh"><a href="#Tanh" class="headerlink" title="Tanh"></a>Tanh</h5></li>
-</ol>
-<p>  The Tanh activation function is also called <strong>hyperbolic tangent activation function</strong>. Similar to the Sigmoid function, the Tanh function uses the truth value, but the Tanh function compresses it into the interval -1 to 1. Unlike the Sigmoid, the output of the Tanh function is centred on zero, since the interval is between -1 and 1.</p>
-<p>Function expressions:</p>
-<p><img src="/2023/08/15/Activation/img4.png"></p>
-<p>We can find that the Tanh function can be viewed as <strong>a zoomed and shifted Logistic function</strong> with a value range of (-1, 1). <strong>tanh</strong> is related to the <strong>sigmoid</strong> as follows:</p>
-<p><img src="/2023/08/15/Activation/img5.gif"></p>
-<p>The image of the tanh activation function is also S-shaped. As a hyperbolic tangent function, the tanh function has a relatively similar curve to the sigmoid function. But it has some <strong>advantages</strong> over the sigmoid function.</p>
-<p>In practice, the Tanh function is used in preference to the Sigmoid function. Negative inputs are treated as negative values, zero input values are mapped close to zero, and positive inputs are treated as positive values:</p>
-<ul>
-<li><p>When the input is large or small, the output is almost smooth and has a small gradient, which is not favourable for weight updating. The difference between the two is in the output spacing, tanh has an output spacing of 1 and the whole function is centred on 0, which is better than a sigmoid function;</p>
-</li>
-<li><p>In tanh graph, negative inputs will be strongly mapped as negative and zero inputs are mapped as close to zero.</p>
-</li>
-</ul>
-<p><strong>Shortcomings of tanh</strong>:</p>
-<ul>
-<li><p>Similar to the sigmoid, the tanh function suffers from <strong>vanishing gradients</strong>, and thus ‘kills’ gradients at saturation (when x is large or small).</p>
-<p>Note: <em>In general binary classification problems, the tanh function is used in the <strong>hidden layer</strong> and the sigmoid function is used in the output layer, but this is not fixed and needs to be adapted to the particular problem.</em></p>
-</li>
-</ul>
-<ol start="3">
-<li><h5 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h5></li>
-</ol>
-<p>  ReLU function, also known as <strong>Rectified Linear Unit (RLU)</strong>, is a segmented linear function, which makes up for the gradient vanishing problem of the sigmoid function as well as the tanh function, and is widely used in current deep neural networks.The ReLU function is essentially a <strong>ramp function</strong>, and the formula and the function image are as follows:</p>
-<p>  <img src="/2023/08/15/Activation/img6.png"></p>
-<p>ReLU function is a popular activation function in deep learning, compared with sigmoid function and tanh function, it has the following <strong>advantages</strong>: </p>
-<ul>
-<li>When the input is positive, the derivative is 1, which <strong>improves the gradient vanishing problem</strong> to some extent and <strong>accelerates the convergence of gradient descent</strong>;</li>
-<li><strong>It is much faster to compute</strong>. there are only linear relationships in the ReLU function, so it is faster to compute than sigmoid and tanh.</li>
-<li><strong>Considered biologically plausible</strong>, e.g., unilateral inhibition, wide excitability bounds (i.e., excitability can be very high).</li>
-</ul>
-<p><strong>Shortcomings of the ReLU function:</strong></p>
-<ul>
-<li><p><strong>Dead ReLU problem</strong>. <em>When the input is negative, ReLU fails completely</em>, which is not a problem during forward propagation. Some regions are sensitive and some are not. <strong>But during back propagation, if the input is negative, the gradient will be completely zero;</strong></p>
-</li>
-<li><p><strong>Not zero-centred</strong>: Similar to the Sigmoid activation function, the output of the ReLU function is not zero-centred, the output of the ReLU function is zero or positive, introducing a bias offset to the neural network in the later layers can affect the efficiency of gradient descent.</p>
-</li>
-</ul>
-<ol start="4">
-<li><strong>Leaky ReLU</strong><br>To solve the problem of vanishing gradient in the ReLU activation function when x &lt; 0, we use <strong>Leaky ReLU</strong> - a function that tries to fix the dead ReLU problem. Let’s take a closer look at Leaky ReLU.</li>
-</ol>
-<p>The function expression and image are shown below:</p>
-<p><img src="/2023/08/15/Activation/img7.png"></p>
-<p><img src="/2023/08/15/Activation/img8.png"></p>
-<h5 id="Why-would-using-Leaky-ReLU-work-better-than-ReLU"><a href="#Why-would-using-Leaky-ReLU-work-better-than-ReLU" class="headerlink" title="Why would using Leaky ReLU work better than ReLU?"></a>Why would using Leaky ReLU work better than ReLU?</h5><ul>
-<li>Leaky ReLU adjusts for the problem of negative zero gradients by giving a negative input (0.01x) to a very small linear component of x, <strong>which gives a positive gradient of 0.1 when x &lt; 0</strong>. This function alleviates the dead ReLU problem to some extent.</li>
-<li>leak helps to <strong>extend the range of the ReLU function</strong>, usually with a value of 0.01 or so;</li>
-<li>The function range of Leaky ReLU is (negative infinity to positive infinity).</li>
-</ul>
-<p>Although Leaky ReLU has all the characteristics of ReLU activation function (such as computationally efficient, fast convergence, not saturated in the positive region), <strong>it does not completely prove that Leaky ReLU is always better than ReLU in practice</strong>.</p>
-<ol start="5">
-<li><strong>Softmax</strong><br>Softmax is an activation function for <strong>multi-class classification</strong> problems where class membership is required for more than two class labels. For any real vector of length K, Softmax can compress it into a real vector of length K with values in the range (0, 1) and the sum of the elements in the vector is 1.</li>
-</ol>
-<p>The expression of the function is as follows:</p>
-<p><img src="/2023/08/15/Activation/img9.png"></p>
-<p><img src="/2023/08/15/Activation/img10.jpg"></p>
-<p>Softmax is different from the normal max function: the max function only outputs the maximum value, but Softmax ensures that smaller values have a smaller probability and are not discarded outright. We can think of it as a probabilistic or “soft” version of the argmax function.</p>
-<p>The denominator of the Softmax function combines all the factors of the original output value, which means that the various probabilities obtained by the Softmax function are related to each other.</p>
-<p><strong>Shortcomings of the Softmax activation function:</strong></p>
-<ul>
-<li><strong>It is not differentiable at zero</strong>;</li>
-<li><strong>Negative inputs have a gradient of zero</strong>, which means that for activations in that region, the weights are not updated during backpropagation, thus creating dead neurons that never activate</li>
-</ul>
-<p>5.1  Layer and Block</p>
-<p>Block</p>
-<p> 1.它的任何子类都必须定义一个将其输入转换为输出的前向传播函数， 并且必须存储任何必需的参数。 有些块不需要任何参数。 最</p>
-<ol start="2">
-<li>为了计算梯度，块必须具有反向传播函数。</li>
-</ol>
-<p><em>卷积</em>（convolution）:</p>
-<p>直观上可以想象在靠近输入的底层，一些通道专门识别边缘，而一些通道专门识别纹理。</p>
-<p>输出大小等于输入大小�ℎ×��减去卷积核大小�ℎ×��，即：</p>
-<ol start="2">
-<li><pre><code>class MLP(nn.Module):
-    # 用模型参数声明层。这里，我们声明两个全连接的层
-    def __init__(self):
-        # 调用MLP的父类Module的构造函数来执行必要的初始化。
-        # 这样，在类实例化时也可以指定其他函数参数，例如模型参数params（稍后将介绍）
-        super().__init__()
-        self.hidden = nn.Linear(20, 256)  # 隐藏层
-        self.out = nn.Linear(256, 10)  # 输出层
-
-    # 定义模型的前向传播，即如何根据输入X返回所需的模型输出
-    def forward(self, X):
-        # 注意，这里我们使用ReLU的函数版本，其在nn.functional模块中定义。
-        return self.out(F.relu(self.hidden(X)))
-        
-        
-        
-        
- # 构造一个二维卷积层，它具有1个输出通道和形状为（1，2）的卷积核
-conv2d = nn.Conv2d(1,1, kernel_size=(1, 2), bias=False)
-
-# 这个二维卷积层使用四维输入和输出格式（批量大小、通道、高度、宽度），
-# 其中批量大小和通道数都为1
-X = X.reshape((1, 1, 6, 8))
-Y = Y.reshape((1, 1, 6, 7))
-lr = 3e-2  # 学习率
-
-for i in range(10):
-    Y_hat = conv2d(X)
-    l = (Y_hat - Y) ** 2
-    conv2d.zero_grad()
-    l.sum().backward()
-    # 迭代卷积核
-    conv2d.weight.data[:] -= lr * conv2d.weight.grad
-    if (i + 1) % 2 == 0:
-        print(f&#39;epoch &#123;i+1&#125;, loss &#123;l.sum():.3f&#125;&#39;)
-        
-        
-        
-        
-</code></pre>
-</li>
-</ol>
-<p>Common Activation function</p>
-<p>1.Gumberl softmax</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/633431594">通俗易懂地理解Gumbel Softmax - 知乎 (zhihu.com)</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-07-29T23:00:00.000Z" title="30/07/2023, 00:00:00">2023-07-30</time></span><span class="level-item"><a class="link-muted" href="/categories/Deep-Learning/">Deep Learning</a></span><span class="level-item">5 minutes read (About 676 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/07/30/BasicsofNeuralNetworksII/">Basics of Neural NetworksII</a></h1><div class="content"><p>Let’s introduce some popular Neural Network Layers</p>
+<p><img src="/2023/08/30/ModelCompressionPruning/img1.png"></p></div><a class="article-more button is-small is-size-7" href="/2023/08/30/ModelCompressionPruning/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-08-14T23:00:00.000Z" title="15/08/2023, 00:00:00">2023-08-15</time></span><span class="level-item"><a class="link-muted" href="/categories/Deep-Learning/">Deep Learning</a></span><span class="level-item">12 minutes read (About 1761 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/08/15/Activation/">Activation Function</a></h1><div class="content"><h3 id="I-What-is-an-activation-function"><a href="#I-What-is-an-activation-function" class="headerlink" title="I. What is an activation function?"></a>I. What is an activation function?</h3><p>In contact with the deep learning, especially in the neural network, we will find that in each layer of the neural network output will use a function (such as sigmoid, tanh, Relu, etc.) on the results of the operation, this function is the <strong>activation function</strong> . So <em>why do we need to add an activation function? And what are the problems if you don’t add it?</em></p></div><a class="article-more button is-small is-size-7" href="/2023/08/15/Activation/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-07-29T23:00:00.000Z" title="30/07/2023, 00:00:00">2023-07-30</time></span><span class="level-item"><a class="link-muted" href="/categories/Deep-Learning/">Deep Learning</a></span><span class="level-item">5 minutes read (About 676 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/07/30/BasicsofNeuralNetworksII/">Basics of Neural NetworksII</a></h1><div class="content"><p>Let’s introduce some popular Neural Network Layers</p>
 <ul>
 <li><h4 id="Fully-Connected-Layer-Linear-Layer"><a href="#Fully-Connected-Layer-Linear-Layer" class="headerlink" title="Fully-Connected Layer (Linear Layer)"></a>Fully-Connected Layer (Linear Layer)</h4></li>
 </ul>
@@ -334,6 +119,22 @@ for i in range(10):
                     fold: 'unfolded'
                 }
             }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="jasmine" defer></script><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
             loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
         });</script></body></html>
