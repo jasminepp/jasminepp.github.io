@@ -18,7 +18,7 @@
     --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
     --sans:  'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
-    --rail:  282px;
+    --rail:  320px;
     --maxw:  1160px;
 }
 
@@ -82,7 +82,7 @@ button:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; borde
 
 .rail-name {
     font-family: var(--serif);
-    font-size: 30px;
+    font-size: 24px;
     line-height: 1.1;
     font-weight: 600;
     letter-spacing: -0.014em;
@@ -377,6 +377,10 @@ button:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; borde
 }
 
 /* --------------------------------------------------------------- responsive */
+
+@media (min-width: 901px) {
+    .rail-name { white-space: nowrap; }
+}
 
 @media (max-width: 900px) {
     .layout { grid-template-columns: 1fr; }
