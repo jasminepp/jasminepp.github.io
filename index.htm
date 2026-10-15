@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tianhao (Jasmine) Peng</title>
-    <meta name="description" content="Tianhao (Jasmine) Peng — PhD candidate at the University of Bristol working on neural image and video compression, implicit neural representations and video quality assessment.">
+    <meta name="description" content="Tianhao (Jasmine) Peng — PhD candidate at the University of Bristol working on efficient AI for image and video: neural image, video, 3D and 4D compression, implicit neural representations and generative compression.">
     <meta name="author" content="Tianhao Peng">
 
     <meta property="og:type" content="profile">
     <meta property="og:title" content="Tianhao (Jasmine) Peng">
-    <meta property="og:description" content="PhD candidate at the University of Bristol working on neural image and video compression, implicit neural representations and video quality assessment.">
+    <meta property="og:description" content="PhD candidate at the University of Bristol working on efficient AI for image and video: neural image, video, 3D and 4D compression, implicit neural representations and generative compression.">
     <meta property="og:url" content="https://jasminepp.github.io/">
     <meta property="og:image" content="https://jasminepp.github.io/figures/web/portrait.jpg">
     <meta name="twitter:card" content="summary">
@@ -49,6 +49,7 @@
                 <a href="https://github.com/jasminepp">GitHub <span>@jasminepp</span></a>
                 <a href="https://www.linkedin.com/in/tianhao-peng-1ab5221b5/">LinkedIn <span>↗</span></a>
                 <a href="https://research-information.bris.ac.uk/en/persons/tianhao-peng">CV / Research portal <span>↗</span></a>
+                <a href="./life.htm">My Life <span>→</span></a>
             </nav>
         </aside>
 
@@ -58,8 +59,8 @@
             <section class="section" id="about">
                 <h2 class="label">About</h2>
                 <p class="lede">PhD candidate in Computer Science at the University of Bristol, specialising in
-                    <b>efficient AI for image and video</b>. Research spans <b>neural image/video/3DGS
-                        compression</b> (end-to-end codecs, implicit neural representations, scalable coding),
+                    <b>efficient AI for image and video</b>. Research spans <b>neural image, video, 3D and 4D
+                        scene compression</b> (end-to-end codecs, implicit neural representations, scalable coding),
                     <b>model compression and acceleration</b> (quantization, pruning, knowledge distillation and
                     data-efficient training), <b>generative modelling</b> (flow matching, generative
                     compression), and <b>real-time video models</b>.</p>
@@ -75,15 +76,23 @@
                 </dl>
             </section>
 
-            <!-- Ready to switch on when there is something to announce:
             <section class="section" id="news">
                 <h2 class="label">News</h2>
                 <dl class="facts">
-                    <dt>Sept 2026</dt>
-                    <dd>Something worth announcing.</dd>
+                    <dt>Oct 2026</dt>
+                    <dd>My first-author paper <b>S-NVRC</b> accepted at <b>WACV 2027</b>.</dd>
+                    <dt>Oct 2026</dt>
+                    <dd><b>S-NVRC</b> selected for a talk at the <b>4th AOMedia Research Symposium</b> (4 Nov 2026, Google, Bay Area).</dd>
+                    <dt>Sep 2026</dt>
+                    <dd>My first-author paper <b>PerQ</b> accepted at <b>NeurIPS 2026</b>.</dd>
+                    <dt>Sep 2026</dt>
+                    <dd>Presented <b>NVRC++</b> and our <b>Video4Real</b> workshop paper at <b>ECCV 2026</b> in Malmö. <a href="./life.htm#eccv2026">Photos</a></dd>
+                    <dt>Aug 2026</dt>
+                    <dd>My co-first-author paper <b>Toward Real-World Neural Video Representation</b> accepted at the <b>ECCV 2026 Video4Real Workshop</b>.</dd>
+                    <dt>Jul 2026</dt>
+                    <dd>My co-first-author paper <b>NVRC++</b> accepted at <b>ECCV 2026</b>.</dd>
                 </dl>
             </section>
-            -->
 
             <section class="section" id="research">
                 <h2 class="label">Research areas</h2>
@@ -114,7 +123,7 @@
                 <div class="paper-list">
 
                     <article class="paper" data-topics="compression">
-                        <p class="venue">Under review · 2026</p>
+                        <p class="venue">WACV · 2027</p>
                         <h3 class="paper-title">
                             <a href="https://arxiv.org/abs/2609.04273">Scalable Neural Video Representation Compression</a>
                         </h3>
@@ -127,8 +136,46 @@
                         </p>
                     </article>
 
-                    <article class="paper" data-topics="compression efficiency">
+                    <article class="paper" data-topics="compression">
+                        <p class="venue">NeurIPS · 2026</p>
+                        <h3 class="paper-title">PerQ: Inverse Generative Modeling for Neural Image Compression via Quantization Error Compensation</h3>
+                        <p class="pull">“A single checkpoint that matches generative codecs in perceptual quality while keeping
+                            fidelity competitive with distortion-optimised codecs, across a wide bitrate range.”</p>
+                        <p class="authors"><span class="me">Tianhao Peng</span>, Ho Man Kwan, Fan Zhang,
+                            Shan Liu, David Bull</p>
+                    </article>
+
+                    <article class="paper" data-topics="compression">
                         <p class="venue">Under review · 2026</p>
+                        <h3 class="paper-title">Neural Reparameterization for 3D Gaussian Splatting Compression</h3>
+                        <p class="pull">“Generates a 3D Gaussian Splatting scene with small networks instead of storing its
+                            Gaussians, so the rate is set by the networks rather than by the number of Gaussians.”</p>
+                        <p class="authors">Ho Man Kwan*, <span class="me">Tianhao Peng</span>*, Fan Zhang, David Bull</p>
+                    </article>
+
+                    <article class="paper" data-topics="compression">
+                        <p class="venue">ECCV · 2026</p>
+                        <h3 class="paper-title">
+                            <a href="https://arxiv.org/abs/2606.28163">Enhanced Neural Video Representation Compression across Extreme Complexity and Quality Scales</a>
+                        </h3>
+                        <p class="pull">“Up to 8.5× faster decoding than NVRC at comparable coding performance,
+                            across four complexity levels from 7 to 360 kMACs per pixel.”</p>
+                        <p class="authors">Ho Man Kwan*, <span class="me">Tianhao Peng</span>*, Fan Zhang,
+                            Mike Nilsson, Andrew Gower, David Bull</p>
+                        <p class="paper-links">
+                            <a href="https://arxiv.org/abs/2606.28163">arXiv</a>
+                            <a href="https://hmkx.github.io/nvrc-pp/">Project page</a>
+                        </p>
+                    </article>
+
+                    <article class="paper" data-topics="compression efficiency">
+                        <p class="venue">ECCV Video4Real Workshop · 2026</p>
+                        <h3 class="paper-title">Toward Real-World Neural Video Representation: Compact, Low-Complexity, and Scalable</h3>
+                        <p class="authors"><span class="me">Tianhao Peng</span>*, Ho Man Kwan*, Fan Zhang, David Bull</p>
+                    </article>
+
+                    <article class="paper" data-topics="compression efficiency">
+                        <p class="venue">VCIP · 2026</p>
                         <h3 class="paper-title">
                             <a href="https://arxiv.org/abs/2609.04274">Multi-scale Image Representation Compression</a>
                         </h3>
@@ -141,19 +188,15 @@
                         </p>
                     </article>
 
-
-                    <article class="paper" data-topics="compression">
-                        <p class="venue">ECCV · 2026</p>
+                    <article class="paper" data-topics="vqa">
+                        <p class="venue">Under review · 2026</p>
                         <h3 class="paper-title">
-                            <a href="https://arxiv.org/abs/2606.28163">Enhanced Neural Video Representation Compression across Extreme Complexity and Quality Scales</a>
+                            <a href="https://arxiv.org/abs/2512.02224">Unified-VQA: Towards Unified Video Quality Assessment</a>
                         </h3>
-                        <p class="pull">“Up to 8.5× faster decoding than NVRC at comparable coding performance,
-                            across four complexity levels from 7 to 360 kMACs per pixel.”</p>
-                        <p class="authors">Ho Man Kwan*, <span class="me">Tianhao Peng</span>*, Andrew Gower,
-                            Fan Zhang, Mike Nilsson, David Bull</p>
+                        <p class="authors">Chen Feng, <span class="me">Tianhao Peng</span>, Fan Zhang,
+                            Alex Mackin, Andrew Collins, David Bull</p>
                         <p class="paper-links">
-                            <a href="https://arxiv.org/abs/2606.28163">arXiv</a>
-                            <a href="https://hmkx.github.io/nvrc-pp/">Project page</a>
+                            <a href="https://arxiv.org/abs/2512.02224">arXiv</a>
                         </p>
                     </article>
 
@@ -169,18 +212,6 @@
                             Fan Zhang, David Bull</p>
                         <p class="paper-links">
                             <a href="https://www.preprints.org/manuscript/202604.0035">Preprint</a>
-                        </p>
-                    </article>
-
-                    <article class="paper" data-topics="vqa">
-                        <p class="venue">Under review · 2026</p>
-                        <h3 class="paper-title">
-                            <a href="https://arxiv.org/abs/2512.02224">Unified-VQA: Towards Unified Video Quality Assessment</a>
-                        </h3>
-                        <p class="authors">Chen Feng, <span class="me">Tianhao Peng</span>, Fan Zhang,
-                            Alex Mackin, Andrew Collins, David Bull</p>
-                        <p class="paper-links">
-                            <a href="https://arxiv.org/abs/2512.02224">arXiv</a>
                         </p>
                     </article>
 
@@ -273,7 +304,7 @@
                         <img src="./figures/web/vi-logo.jpg" width="420" height="136" alt="Visual Information Laboratory">
                     </a>
                 </div>
-                <p class="foot-meta">Updated September 2026</p>
+                <p class="foot-meta">Updated October 2026</p>
             </footer>
 
         </main>
