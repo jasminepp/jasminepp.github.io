@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PerQ: Inverse Generative Modeling for Neural Image Compression via Quantization Error Compensation</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="PerQ: Inverse Generative Modeling for Neural Image Compression via Quantization Error Compensation">
+<meta property="og:description" content="PerQ adds a flow-matching compensator to a frozen distortion-optimized codec and refines the decoded latent inside its quantization cell: generative-level LPIPS and FID with PSNR on par with VVC, from one model. NeurIPS 2026.">
+<meta property="og:url" content="https://jasminepp.github.io/PerQ/">
+<meta property="og:image" content="https://jasminepp.github.io/PerQ/static/images/og_teaser.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<meta name="description" content="PerQ: Inverse Generative Modeling for Neural Image Compression via Quantization Error Compensation (NeurIPS 2026).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Castoro&family=Noto+Sans:wght@400;500;600&family=Noto+Sans+Mono:wght@400&display=swap">
+<style>
+/* Layout: one centred column in the usual academic project-page order (title, links, teaser, abstract, method, demo, results, BibTeX).
+   Figures sit on white panels in both themes because they are white-background plots. PerQ red is the only accent. */
+:root {
+  --bg: #ffffff; --fg: #1d2127; --muted: #5a6370; --line: #dde1e6; --panel: #f4f6f8;
+  --btn: #22262b; --btn-fg: #ffffff; --btn-off: #c4c9cf; --accent: #c62828; --figure: #ffffff;
+  --serif: "Castoro", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --sans: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "Noto Sans Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --s-0: 0.875rem; --s-1: 1rem; --s-2: 1.125rem; --s-3: 1.6rem; --s-4: clamp(1.6rem, 1.1rem + 2.2vw, 2.5rem);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121519; --fg: #e5e8ec; --muted: #9ba5b0; --line: #2b3138; --panel: #1a1e23;
+  --btn: #e5e8ec; --btn-fg: #121519; --btn-off: #4a525b; --accent: #ff7a70; --figure: #ffffff; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121519; --fg: #e5e8ec; --muted: #9ba5b0; --line: #2b3138; --panel: #1a1e23;
+  --btn: #e5e8ec; --btn-fg: #121519; --btn-off: #4a525b; --accent: #ff7a70; --figure: #ffffff; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: var(--s-1); line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px }
+main { max-width: 960px; margin-inline: auto; display: grid; gap: 56px }
+.prose { max-width: 760px; margin-inline: auto; width: 100%; min-width: 0 }
+a { color: inherit; text-underline-offset: 2px }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px }
+
+/* Header */
+.hero { text-align: center; display: grid; gap: 14px; padding-top: 48px }
+.hero h1 { font-family: var(--serif); font-weight: 400; font-size: var(--s-4); line-height: 1.2; margin: 0; text-wrap: balance }
+.hero h1 .name { color: var(--accent) }
+.authors { margin: 0; font-size: var(--s-2); display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px }
+.authors sup, .affil sup { color: var(--muted); font-size: 0.7em; margin-left: 1px }
+.affil { margin: 0; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 18px }
+.venue { margin: 0; font-family: var(--serif); font-size: var(--s-2) }
+.links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 6px }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 999px; background: var(--btn);
+  color: var(--btn-fg); text-decoration: none; font-weight: 500; font-size: var(--s-0); border: 0; cursor: pointer }
+.btn svg { width: 16px; height: 16px; fill: currentColor; flex: none }
+.btn.off { background: transparent; color: var(--muted); border: 1px dashed var(--btn-off); cursor: default }
+.btn.off small { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em }
+@media (hover: hover) { a.btn:hover { opacity: 0.86 } }
+
+/* Sections */
+section { display: grid; gap: 18px; min-width: 0 }
+h2 { font-family: var(--serif); font-weight: 400; font-size: var(--s-3); text-align: center; margin: 0; text-wrap: balance }
+h3 { font-size: var(--s-1); font-weight: 600; margin: 0 }
+p { margin: 0 }
+.abstract p { text-align: justify; hyphens: auto }
+.tldr { text-align: center; color: var(--muted); max-width: 760px; margin-inline: auto }
+.tldr b { color: var(--fg); font-weight: 600 }
+figure { margin: 0; display: grid; gap: 10px; min-width: 0 }
+figure .plate { background: var(--figure); border-radius: 6px; padding: 10px; border: 1px solid var(--line) }
+figure img { display: block; width: 100%; height: auto }
+figcaption { color: var(--muted); font-size: var(--s-0); line-height: 1.55; max-width: 820px; margin-inline: auto }
+figcaption b { color: var(--fg); font-weight: 600 }
+.steps { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) }
+.steps > div { display: grid; gap: 6px; align-content: start; min-width: 0 }
+.steps .k { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); font-weight: 600 }
+.steps p { font-size: var(--s-0); color: var(--fg) }
+
+/* Demo */
+.demo-frame { width: 100%; height: 1100px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); display: block }
+.demo-note { text-align: center; font-size: var(--s-0); color: var(--muted) }
+
+/* Table */
+.tablebox { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; max-width: 100% }
+table { border-collapse: collapse; width: 100%; font-size: 0.8rem; font-variant-numeric: tabular-nums }
+th, td { padding: 6px 9px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--line) }
+th:first-child, td:first-child { text-align: left }
+thead th { font-weight: 600; background: var(--panel) }
+thead tr.grp th { text-align: center; font-weight: 600 }
+tr.band td { background: var(--panel); color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; text-align: left }
+tr.ours td { color: var(--accent); font-weight: 600 }
+td.sep, th.sep { border-left: 1px solid var(--line) }
+.tnote { font-size: 0.75rem; color: var(--muted) }
+
+/* BibTeX */
+.bib { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 8px }
+.bib pre { margin: 0; padding: 16px; overflow-x: auto; font-family: var(--mono); font-size: 0.8rem; line-height: 1.55 }
+.bib button { position: absolute; top: 8px; right: 8px; font: inherit; font-size: 0.75rem; padding: 4px 10px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer }
+footer { max-width: 960px; margin: 56px auto 0; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted);
+  font-size: 0.78rem; text-align: center }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth } }
+</style>
+
+</head>
+<body>
+<main>
+  <header class="hero">
+    <h1><span class="name">PerQ</span>: Inverse Generative Modeling for Neural Image Compression via Quantization Error Compensation</h1>
+    <p class="authors">
+      <span>Tianhao Peng<sup>1</sup></span><span>Ho Man Kwan<sup>1</sup></span><span>Fan Zhang<sup>1</sup></span>
+      <span>Shan Liu<sup>2</sup></span><span>Dave Bull<sup>1</sup></span>
+    </p>
+    <p class="affil"><span><sup>1</sup>Visual Information Lab, University of Bristol</span><span><sup>2</sup>Tencent Media Lab</span></p>
+    <p class="venue">NeurIPS 2026</p>
+    <nav class="links" aria-label="Paper links">
+      <a class="btn" href="https://arxiv.org/abs/2610.27374" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1.5V9h5.5L13 3.5zM8 13h8v1.6H8V13zm0 3.4h8V18H8v-1.6z"/></svg>
+        Paper</a>
+      <span class="btn off" aria-disabled="true" title="The code will be released soon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.7 16.6 4.1 12l4.6-4.6L7.3 6 1.3 12l6 6 1.4-1.4zm6.6 0 4.6-4.6-4.6-4.6L16.7 6l6 6-6 6-1.4-1.4z"/></svg>
+        Code <small>soon</small></span>
+      <a class="btn" href="#demo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h8v16H3V4zm10 0h8v16h-8V4zm2 2v12h4V6h-4z"/></svg>
+        Interactive demo</a>
+      <a class="btn" href="#bibtex">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17h3l2-4V7H5v6h3l-2 4zm8 0h3l2-4V7h-6v6h3l-2 4z"/></svg>
+        BibTeX</a>
+    </nav>
+  </header>
+
+  <section aria-label="Teaser">
+    <figure>
+      <div class="plate"><img src="static/images/teaser.webp" width="2493" height="825"
+        alt="Left: a teapot crop from CLIC2020-test reconstructed by ELIC, PerQ, Control-GIC, OSCAR and PerCo at 0.05 to 0.13 bpp. Right: BD-rate of PSNR against BD-rate of LPIPS for all codecs, with PerQ alone in the region of good fidelity and good perceptual quality."></div>
+      <figcaption><b>Balance between perceptual quality and pixel fidelity.</b> Left: visual comparison at comparable bitrates, with
+        PSNR (dB) / LPIPS under each tile. Right: BD-rate of PSNR against BD-rate of LPIPS on CLIC2020-test, both relative to VTM intra;
+        lower is better on both axes.</figcaption>
+    </figure>
+  </section>
+
+  <section class="abstract prose" aria-labelledby="h-abstract">
+    <h2 id="h-abstract">Abstract</h2>
+    <p>Neural image codecs face a long-standing trade-off: distortion-optimized designs preserve pixel-wise fidelity but tend to produce
+      blurred reconstructions at low bitrates, while generative designs close the perceptual gap with a learned prior, but with pixel
+      fidelity saturating as bitrate increases. The latter typically requires training multiple models for various bitrate targets. This
+      paper addresses these limitations by reframing the perceptual reconstruction problem. Starting from the quantization bound that holds
+      for any modern multi-rate codec, we identify the quantization cell with the set of latents that produce the same transmitted symbols,
+      and derive a transport bound under which every reconstruction decoded from this cell lies within a rate-determined radius of the
+      codec's output. Modeling the latent over this cell which is relatively small to the full image manifold, rather than generating from
+      an image prior, casts unconstrained perceptual reconstruction as inverse generative modeling with bounded support. We instantiate this
+      as <b>PerQ</b>: an image codec that attaches a rate-conditioned flow-matching compensator supported on this cell to a frozen multi-rate
+      distortion-optimized backbone. The experimental results on the Kodak and CLIC2020 datasets show that PerQ offers similar performance
+      to generative neural image codecs (e.g., MS-ILLM) in perceptual metrics (LPIPS, FID), while still maintaining competitive coding
+      performance compared to distortion-optimized codecs (e.g., ELIC) in PSNR. Moreover, PerQ covers a wide bitrate range with fast
+      decoding from a single model checkpoint, and its compensator brings similar gains to three different backbones.</p>
+  </section>
+
+  <section aria-labelledby="h-method">
+    <h2 id="h-method">Method</h2>
+    <figure>
+      <div class="plate"><img src="static/images/framework.webp" width="2296" height="1012"
+        alt="PerQ pipeline: frozen encoder, quantizer, arithmetic coder and decoder of the backbone, with the trainable PerQ compensator between the entropy decoder and the image decoder; below, the flow-matching compensator built from ConvNeXt blocks with AdaLN conditioning on the rate."></div>
+      <figcaption><b>PerQ overview.</b> Top: the compression pipeline. Bottom left: architecture of the flow-matching compensator.
+        Bottom right: illustrative 2D slice of the latent space. The cell is centred at the quantized latent and contains the source latent.
+        The compensator generates a refined latent within the cell, targeting the high-perceptual-quality field (blue) while remaining inside
+        the low-distortion field (orange).</figcaption>
+    </figure>
+    <div class="steps prose">
+      <div><span class="k">Quantization cell</span>
+        <p>Every latent within half a quantization step of the decoded latent rounds to the same symbols, so it produces the same
+          bitstream. The source latent is one of them, and the decoder may pick any latent in this cell.</p></div>
+      <div><span class="k">Transport bound</span>
+        <p>Every reconstruction decoded from the cell stays within a radius R(q) of the backbone's reconstruction, and R(q) grows linearly
+          with the quantization step q. Restricting the compensator to a sub-cell of scale m shrinks the radius to m&#8202;R(q).</p></div>
+      <div><span class="k">Compensator</span>
+        <p>A rate-conditioned flow-matching network (ConvNeXt blocks, 4 Euler steps) predicts the refinement, which a tanh clamp keeps within
+          &plusmn;m/2 of each symbol (m = 0.1). The backbone stays frozen and one checkpoint serves all 64 rate points.</p></div>
+    </div>
+    <figure>
+      <div class="plate"><img src="static/images/quant_error.webp" width="1528" height="421"
+        alt="Histograms of the backbone's quantization error in symbol space on Kodak at 0.010, 0.042, 0.178 and 0.874 bpp, with the plus or minus m over 2 band holding 96, 89, 70 and 43 percent of the error."></div>
+      <figcaption><b>The backbone's quantization error is far from uniform.</b> Symbol-space error on Kodak at four rate points (log
+        density). The sub-cell &plusmn;m/2 (red, m = 0.1) contains most of the error at low rates, and the compensator's prior
+        N(0,&nbsp;&sigma;<sup>2</sup>) with &sigma; = m/&radic;12 (gold) is set to the scale of this sub-cell.</figcaption>
+    </figure>
+  </section>
+
+  <section id="demo" aria-labelledby="h-demo">
+    <h2 id="h-demo">Interactive comparison</h2>
+    <p class="tldr">Flip between VTM, the DCVC-RT backbone and PerQ on three backbones (DCVC-RT, ELIC, MLIC++) at matched bitrates, on three
+      CLIC2020-test crops. Hold for the original, zoom up to 3&times;.</p>
+    <iframe class="demo-frame" id="demo-frame" src="demo/index.html" title="PerQ interactive visual comparison" loading="lazy"></iframe>
+    <p class="demo-note"><a href="demo/index.html" target="_blank" rel="noopener">Open the comparison on its own page</a></p>
+  </section>
+
+  <section aria-labelledby="h-results">
+    <h2 id="h-results">Results</h2>
+    <p class="prose">BD-rate against VVC (VTM 22.0 intra) on Kodak and CLIC2020-test, with decoding cost. PerQ reduces the LPIPS BD-rate
+      by 57.4% and 70.6% while its PSNR BD-rate stays competitive with VVC, from one checkpoint that covers 0.009 to 0.87 bpp.</p>
+    <div class="tablebox" role="region" aria-label="BD-rate table" tabindex="0">
+      <table>
+        <thead>
+          <tr class="grp"><th></th><th></th><th></th><th></th><th class="sep" colspan="4">Kodak, BD-rate vs. VVC (%)</th>
+            <th class="sep" colspan="4">CLIC2020-test, BD-rate vs. VVC (%)</th></tr>
+          <tr><th>Codec</th><th>Multi-rate</th><th>Dec. ms/Mp</th><th>kMACs/px</th>
+            <th class="sep">PSNR</th><th>LPIPS</th><th>DISTS</th><th>FID</th><th class="sep">PSNR</th><th>LPIPS</th><th>DISTS</th><th>FID</th></tr>
+        </thead>
+        <tbody>
+          <tr class="band"><td colspan="12">Conventional</td></tr>
+          <tr><td>VTM intra</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td class="sep">0</td><td>0</td><td>0</td><td>0</td><td class="sep">0</td><td>0</td><td>0</td><td>0</td></tr>
+          <tr class="band"><td colspan="12">VAE-based</td></tr>
+          <tr><td>ELIC</td><td></td><td>206</td><td>332</td><td class="sep">&minus;2.0</td><td>&minus;2.1</td><td>+2.4</td><td>+7.3</td><td class="sep">&minus;1.9</td><td>&minus;1.3</td><td>+9.4</td><td>&minus;13.8</td></tr>
+          <tr><td>EVC</td><td>&#10003;</td><td>57</td><td>291</td><td class="sep">+2.0</td><td>&minus;9.0</td><td>&minus;5.4</td><td>&minus;4.0</td><td class="sep">+3.7</td><td>&minus;8.7</td><td>&minus;2.3</td><td>&minus;6.2</td></tr>
+          <tr><td>DCVC-RT-Intra</td><td>&#10003;</td><td>46</td><td>362</td><td class="sep">&minus;11.2</td><td>&minus;8.7</td><td>&minus;2.3</td><td>&minus;1.8</td><td class="sep">&minus;11.8</td><td>&minus;2.5</td><td>+8.8</td><td>&minus;30.1</td></tr>
+          <tr class="band"><td colspan="12">GAN-based perceptual</td></tr>
+          <tr><td>MS-ILLM</td><td></td><td>150</td><td>675</td><td class="sep">+85.9</td><td>&minus;86.4</td><td>&minus;82.9</td><td>&minus;86.3</td><td class="sep">+89.9</td><td>&minus;91.0</td><td>&minus;90.7</td><td>&minus;97.4</td></tr>
+          <tr><td>HiFiC</td><td></td><td>150</td><td>546</td><td class="sep">+128.6</td><td>&minus;69.8</td><td>&minus;59.0</td><td>&minus;64.3</td><td class="sep">+116.3</td><td>&minus;81.1</td><td>&minus;76.9</td><td>&minus;83.0</td></tr>
+          <tr><td>Control-GIC</td><td>&#10003;</td><td>416</td><td>6299</td><td class="sep">+372.4</td><td>&minus;74.0</td><td>&minus;68.5</td><td>&minus;69.7</td><td class="sep">+1045.8</td><td>&minus;65.6</td><td>&minus;73.8</td><td>&minus;85.2</td></tr>
+          <tr class="band"><td colspan="12">Diffusion-based perceptual</td></tr>
+          <tr><td>PerCo</td><td></td><td>6822 (20 steps)</td><td>30930</td><td class="sep">N/A</td><td>&minus;64.1</td><td>&minus;84.4</td><td>&minus;92.9</td><td class="sep">N/A</td><td>N/A</td><td>N/A</td><td>&minus;94.3</td></tr>
+          <tr><td>DiffEIC</td><td></td><td>11628 (50 steps)</td><td>89899</td><td class="sep">N/A</td><td>&minus;81.0</td><td>&minus;88.8</td><td>&minus;91.3</td><td class="sep">N/A</td><td>&minus;84.6</td><td>&minus;87.4</td><td>&minus;96.5</td></tr>
+          <tr><td>CDC</td><td></td><td>4854 (50 steps)</td><td>39440</td><td class="sep">+318.7</td><td>&minus;48.6</td><td>&minus;71.7</td><td>&minus;68.8</td><td class="sep">N/A</td><td>&minus;63.3</td><td>&minus;74.7</td><td>&minus;86.8</td></tr>
+          <tr><td>StableCodec</td><td></td><td>494 (1 step)</td><td>6138</td><td class="sep">N/A</td><td>&minus;92.7</td><td>&minus;96.2</td><td>&minus;96.8</td><td class="sep">N/A</td><td>&minus;94.9</td><td>&minus;97.1</td><td>&minus;99.0</td></tr>
+          <tr><td>OSCAR</td><td>&#10003;</td><td>456 (1 step)</td><td>8262</td><td class="sep">N/A</td><td>&minus;79.0</td><td>&minus;91.8</td><td>&minus;92.3</td><td class="sep">N/A</td><td>&minus;80.2</td><td>&minus;88.7</td><td>&minus;96.0</td></tr>
+          <tr class="band"><td colspan="12">Ours</td></tr>
+          <tr class="ours"><td>PerQ</td><td>&#10003;</td><td>87 (4 steps)</td><td>702</td><td class="sep">&minus;1.6</td><td>&minus;57.4</td><td>&minus;63.2</td><td>&minus;67.9</td><td class="sep">+2.7</td><td>&minus;70.6</td><td>&minus;77.4</td><td>&minus;91.9</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote prose">All BD-rates are anchored to VVC intra (VTM 22.0, all-intra, YCbCr 4:4:4 BT.709, 10-bit) over QP 17 to 42; lower is
+      better. N/A: the quality ranges do not overlap. Decoding time and kMACs per pixel at 768&times;512; for codecs that ship one checkpoint per
+      rate, the mid-rate checkpoint.</p>
+    <figure>
+      <div class="plate"><img src="static/images/rd_curves.webp" width="2400" height="1083" loading="lazy"
+        alt="Rate-distortion curves of PSNR, LPIPS, DISTS and FID against bpp on Kodak and CLIC2020-test for PerQ and all baselines."></div>
+      <figcaption><b>Rate-distortion curves on Kodak (top) and CLIC2020-test (bottom).</b> PSNR (RGB), LPIPS-Alex, DISTS and FID across
+        bitrates. PerQ (red star) traces a single curve from one trained checkpoint by varying the rate parameter at the decoder. Solid markers
+        denote multi-rate or distortion-optimal baselines; dashed markers denote per-rate trained generative codecs.</figcaption>
+    </figure>
+    <figure>
+      <div class="plate"><img src="static/images/visual.webp" width="2400" height="1856" loading="lazy"
+        alt="Two Kodak crops, kodim02 at low rate and kodim05 at high rate, reconstructed by ELIC, PerQ, a GAN-based and a diffusion-based codec, each with its error map."></div>
+      <figcaption><b>Qualitative comparison.</b> Source crop (left) compared with reconstructions from a distortion-optimized VAE-based codec
+        (grey), PerQ (red), and two generative codecs, GAN-based and diffusion-based (blue), at similar bitrates with the error maps.</figcaption>
+    </figure>
+  </section>
+
+  <section id="bibtex" aria-labelledby="h-bib">
+    <h2 id="h-bib">BibTeX</h2>
+    <div class="bib">
+      <button type="button" id="copy-bib">Copy</button>
+<pre id="bib-text">@inproceedings{peng2026perq,
+  title     = {PerQ: Inverse Generative Modeling for Neural Image Compression via Quantization Error Compensation},
+  author    = {Peng, Tianhao and Kwan, Ho Man and Zhang, Fan and Liu, Shan and Bull, Dave},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2026}
+}</pre>
+    </div>
+  </section>
+</main>
+
+<footer>Layout follows the common academic project-page template popularised by Nerfies.</footer>
+
+<script>
+(() => {
+  // BibTeX copy: clipboard inside the click handler, falling back to selecting the text
+  const btn = document.getElementById('copy-bib'), pre = document.getElementById('bib-text');
+  const select = () => { const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  btn.addEventListener('click', () => {
+    const done = (msg) => { btn.textContent = msg; setTimeout(() => { btn.textContent = 'Copy'; }, 1600); };
+    try {
+      navigator.clipboard.writeText(pre.textContent).then(() => done('Copied'), () => { select(); done('Selected'); });
+    } catch (e) { select(); done('Selected'); }
+  });
+
+  // Demo iframe: same-site page; fit its height to its content and pass the page theme down
+  const fr = document.getElementById('demo-frame');
+  const doc = () => { try { return fr.contentDocument; } catch (e) { return null; } };
+  const theme = () => { const d = doc(); if (!d) return; const t = document.documentElement.getAttribute('data-theme');
+    if (t) d.documentElement.setAttribute('data-theme', t); else d.documentElement.removeAttribute('data-theme'); };
+  const fit = () => { const d = doc(); if (!d || !d.body) return; const h = d.documentElement.scrollHeight; if (h > 200) fr.style.height = h + 'px'; };
+  fr.addEventListener('load', () => {
+    theme(); fit();
+    const d = doc();
+    if (d && d.body && 'ResizeObserver' in window) new ResizeObserver(fit).observe(d.body);
+  });
+  new MutationObserver(theme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+</script>
+
+</body>
+</html>
